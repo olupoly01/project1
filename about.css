@@ -1,0 +1,354 @@
+:root {
+	--primary-color:#000d81;
+	--secondary-color:#2e2e2e;
+	--accent-color:#f5eb00;
+	--text-light:#ffffff;
+	--text-dark:#000000;
+	--background-light:#f9f9f9;
+	--background-dark:#0a0a23;
+	--dark-overlay:rgba(0, 0, 0, 0.192);
+}
+* {
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	text-decoration:none;
+	list-style:none;
+	scroll-behavior:smooth;
+}
+body {
+	font-family:'Montserrat',sans-serif;
+	background-color:var(--background-light);
+	color:var(--text-dark);
+	line-height:1.6;
+}
+/* Navbar Styling */
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 70px;
+	background:rgba(0,13,129,0.767);
+	backdrop-filter: blur(8px);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 2rem;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar.scrolled {
+	background: rgba(0, 0, 0, 0.9);
+	height: 60px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Styling */
+.logo a {
+	color: var(--accent-color);
+	font-size: 1.8rem;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+/* Hamburger Menu */
+.hamburger {
+	display: none;
+	font-size: 1.8rem;
+	color: var(--accent-color);
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.hamburger:hover {
+	color: var(--text-light);
+}
+
+/* Navigation Links */
+.nav-links {
+	display: flex;
+	gap: 1.5rem;
+	list-style: none;
+	transition: all 0.3s ease-in-out;
+}
+
+.nav-links a {
+	color: var(--accent-color);
+	font-size: 1rem;
+	font-weight: 500;
+	position: relative;
+	transition: color 0.3s ease-in-out;
+}
+
+.nav-links a::after {
+	content: "";
+	position: absolute;
+	bottom: -3px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background-color: var(--accent-color);
+	transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+	width: 100%;
+}
+
+.nav-links a:hover {
+	color: var(--accent-color);
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+.hamburger {
+	display: block; /* Show hamburger icon on mobile */
+	z-index: 1100; /* Ensure it's above the menu */
+}
+
+.nav-links {
+	position: absolute;
+	top: 70px;
+	left: 0;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.781);
+	backdrop-filter: blur(10px);
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem 0;
+	transform: translateY(-100%); /* Hide menu completely off-screen */
+	visibility: hidden; /* Ensure it doesn't interfere when hidden */
+	opacity: 0; /* Fully transparent when hidden */
+	transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
+	z-index: 1000; /* Place it above other elements but below the hamburger */
+}
+
+.nav-links.open {
+	transform: translateY(0); /* Slide down to show the menu */
+	visibility: visible; /* Make menu interactable */
+	opacity: 1; /* Fully visible */
+}
+}
+/* Hero Banner */
+ .about-banner {
+	position:relative;
+	height:100vh;
+	background:url('https://cdn.prod.website-files.com/639e4738983578ababe7e5f0/63ac11a9da54a29552f825a6_ago%20front-p-1600.jpg') no-repeat center center/cover;
+	background-attachment:fixed;
+}
+.about-banner::after {
+	content:"";
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:var(--dark-overlay);
+}
+.about-banner .banner-text {
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	text-align:center;
+	color:var(--text-light);
+	background:rgba(0,0,0,0.7);
+	padding:1.5rem 2rem;
+	border-radius:8px;
+}
+.about-banner h1 {
+	color:var(--accent-color);
+	font-size:3rem;
+	margin-bottom:0.5rem;
+	text-transform:uppercase;
+	font-weight:bold;
+}
+.about-banner p {
+	font-size:1.5rem;
+	margin-top:1rem;
+}
+/* About Section */
+.about-container {
+	padding:4rem 2rem;
+	max-width:1200px;
+	margin:0 auto;
+	background:var(--background-light);
+}
+.about-title {
+	font-size:2.5rem;
+	margin-bottom:2rem;
+	color:var(--primary-color);
+	text-align:center;
+}
+.about-intro {
+	font-size:1.2rem;
+	line-height:1.8;
+	color:var(--text-dark);
+	text-align:justify;
+	margin-bottom:3rem;
+}
+/* Key Points */
+.key-points {
+	display:flex;
+	justify-content:space-between;
+	flex-wrap:wrap;
+	gap:2rem;
+	margin-top:2rem;
+}
+.key-point {
+	flex:1;
+	min-width:280px;
+	background:var(--primary-color);
+	color:var(--text-light);
+	padding:2rem;
+	text-align:center;
+	border-radius:10px;
+	transition:transform 0.3s ease,box-shadow 0.3s ease;
+	box-shadow:0 4px 6px rgba(0,0,0,0.1);
+}
+.key-point img {
+	max-width:80px;
+	margin-bottom:1rem;
+}
+.key-point h3 {
+	font-size:1.5rem;
+	color:var(--accent-color);
+	margin-bottom:0.5rem;
+}
+.key-point p {
+	font-size:1rem;
+	color:var(--text-light);
+}
+/* Call-to-Action Section */
+ .call-to-action {
+	text-align:center;
+	background-color:var(--secondary-color);
+	color:var(--text-light);
+	padding:3rem 2rem;
+}
+.call-to-action h2 {
+	font-size:2rem;
+	margin-bottom:1rem;
+}
+.call-to-action p {
+	font-size:1.2rem;
+	margin-bottom:2rem;
+}
+.cta-button {
+	padding:0.75rem 1.5rem;
+	font-size:1.1rem;
+	font-weight:bold;
+	color:var(--primary-color);
+	background-color:var(--accent-color);
+	border:none;
+	border-radius:5px;
+	cursor:pointer;
+	transition:background-color 0.3s ease;
+}
+.cta-button:hover {
+	background-color:var(--primary-color);
+	color:var(--accent-color);
+}
+/* Footer General Styles */
+.footer {
+	background-color: #f4f4f4;
+	color: var(--text-dark);
+	padding: 2.5rem 1.5rem;
+      }
+      
+      .footer-container {
+	display: grid;
+	grid-template-columns: 1.5fr repeat(3, 1fr);
+	gap: 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+      }
+      
+      /* Footer Brand Section */
+      .footer-brand {
+	text-align: center;
+      }
+
+      .footer-logo{
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+      }
+      
+      .footer-logo img {
+	max-width: 80px;
+	margin-bottom: 1rem;
+      }
+      
+      .footer-brand p {
+	font-size: 0.9rem;
+	color: var(--text-dark);
+	line-height: 1.5;
+	margin-bottom: 1rem;
+      }
+      
+      /* Section Titles */
+      .footer-section h3 {
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+	font-weight: bold;
+	color: t;
+      }
+      
+      /* Links List */
+      .footer-section ul {
+	list-style: none;
+	padding: 0;
+      }
+      
+      .footer-section li {
+	margin-bottom: 0.5rem;
+      }
+      
+      .footer-section a {
+	text-decoration: none;
+	color: #333333;
+	transition: color 0.3s ease;
+      }
+      
+      .footer-section a:hover {
+	color: var(--primary-color); /* Accent color for hover */
+      }
+      
+      /* Contact Section */
+      .contact-section p {
+	font-size: 0.9rem;
+	line-height: 1.5;
+	margin-bottom: 0.5rem;
+      }
+      
+      /* Social Icons */
+      .social-icons a {
+	display: inline-block;
+	font-size: 1.5rem;
+	margin-right: 0.8rem;
+	color: var(--text-dark);
+	transition: transform 0.3s ease;
+      }
+      
+      .social-icons a:hover {
+	transform: scale(1.2);
+	color: var(--primary-color);
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+	.footer-container {
+	  grid-template-columns: 1fr;
+	  text-align: center;
+	}
+      
+	.social-icons a {
+	  margin: 0 0.5rem;
+	}
+      }

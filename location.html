@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bokku! Store Locator</title>
+    <link rel="stylesheet" href="location.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbaI0yPQUzoU0kFe2M2ch5o86BgoLW538&libraries=geometry"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar" id="top">
+        <div class="logo"><a href="#">bokku!</a></div>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"> </i></div>
+        <ul class="nav-links" id="nav-links">
+           <li><a href="index.html">Home</a></li>
+           <li><a href="about.html">About </a></li>
+           <li ><a href="products.html" >Products</a></li>
+           <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-container">
+        <div id="map"></div>
+        <div class="sidebar" id="store-list"></div>
+    </div>
+    <button class="find-nearest-btn" id="find-nearest">Find Nearest Store</button>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Brand Logo and Description -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="/images/bokku!-blue-bg.jpg" alt="bokku! Logo">
+          <p>Atreos Retail Platform 2022. <br> &copy; All Rights Reserved.</p>
+        </div>
+        <p>
+            Made with <i class="fas fa-heart fa-beat"></i> by <strong><a target="_blank" href="https://nicopixel-portfolio.vercel.app">nicopixel</a></strong>. 
+        </p>
+      </div>
+  
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Product</a></li>
+          <li><a href="application-form.html">Work with Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Terms & Conditions -->
+      <div class="footer-section">
+        <h3>Terms & Conditions</h3>
+        <ul>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Data Privacy Statement</a></li>
+          <li><a href="#">Website Usage Policy</a></li>
+        </ul>
+      </div>
+  
+      <!-- Contact Us -->
+      <div class="footer-section contact-section">
+        <h3>Contact Us</h3>
+        <p><strong>Email Us</strong><br>
+          <a href="mailto:info@atreos.com">info@Atreos.com</a>
+        </p>
+  
+        <!-- Social Icons -->
+        <p><strong>Socials</strong></p>
+        <div class="social-icons">
+          <a target="_blank" href="https://www.linkedin.com/company/shopbokku/"><i class="fab fa-linkedin-in"></i></a>
+          <a target="_blank" href="https://x.com/bokkumart/"><i class="fab fa-twitter"></i></a>
+          <a target="_blank" href="https://www.instagram.com/bokkumart/"><i class="fab fa-instagram"></i></a>
+          <a target="_blank" href="https://www.youtube.com/@bokkumart"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+    <script src="location.js"></script>
+</body>
+</html>

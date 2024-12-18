@@ -1,0 +1,249 @@
+* {
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	text-decoration:none;
+	list-style:none;
+	scroll-behavior:smooth;
+}
+:root {
+	--primary-color:#000d81;
+	--accent-color:#f5eb00;
+	--text-light:#ffffff;
+	--text-dark:#000000;
+	--background-light:#e2e2e2;
+	--background-dark:#0a0a23;
+	--background-overlay:rgba(0,0,0,0.6);
+}
+body {
+	font-family:'Montserrat',sans-serif;
+	background-color:var(--background-light);
+	color:var(--text-dark);
+}
+/* Navbar Styling */
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 70px;
+	background:rgba(0,13,129,0.767);
+	backdrop-filter: blur(8px);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 2rem;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar.scrolled {
+	background: rgba(0, 0, 0, 0.9);
+	height: 60px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Styling */
+.logo a {
+	color: var(--accent-color);
+	font-size: 1.8rem;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+/* Hamburger Menu */
+.hamburger {
+	display: none;
+	font-size: 1.8rem;
+	color: var(--accent-color);
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.hamburger:hover {
+	color: var(--text-light);
+}
+
+/* Navigation Links */
+.nav-links {
+	display: flex;
+	gap: 1.5rem;
+	list-style: none;
+	transition: all 0.3s ease-in-out;
+}
+
+.nav-links a {
+	color: var(--accent-color);
+	font-size: 1rem;
+	font-weight: 500;
+	position: relative;
+	transition: color 0.3s ease-in-out;
+}
+
+.nav-links a::after {
+	content: "";
+	position: absolute;
+	bottom: -3px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background-color: var(--accent-color);
+	transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+	width: 100%;
+}
+
+.nav-links a:hover {
+	color: var(--accent-color);
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+.hamburger {
+	display: block; /* Show hamburger icon on mobile */
+	z-index: 1100; /* Ensure it's above the menu */
+}
+
+.nav-links {
+	position: absolute;
+	top: 70px;
+	left: 0;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.781);
+	backdrop-filter: blur(10px);
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem 0;
+	transform: translateY(-100%); /* Hide menu completely off-screen */
+	visibility: hidden; /* Ensure it doesn't interfere when hidden */
+	opacity: 0; /* Fully transparent when hidden */
+	transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
+	z-index: 1000; /* Place it above other elements but below the hamburger */
+}
+
+.nav-links.open {
+	transform: translateY(0); /* Slide down to show the menu */
+	visibility: visible; /* Make menu interactable */
+	opacity: 1; /* Fully visible */
+}
+}
+/* Hero Section */
+.hero-section {
+  background: var(--primary-color);
+  color: var(--text-light);
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.hero-logo {
+  max-width: 120px;
+  margin-top: 50px;
+  margin-bottom: 1rem;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Form Section */
+.form-section {
+  padding: 3rem 1rem;
+}
+
+.form-container {
+  background: #f9f9f9;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.form-container p {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  color: var(--primary-color);
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+label i {
+  margin-right: 0.5rem;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+input, select {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.split-input {
+  display: flex;
+  gap: 1rem;
+}
+
+.split-input input {
+  flex: 1;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: var(--background-dark);
+  color: #fff;
+}
+
+.footer strong {
+  color: var(--accent-color);
+}

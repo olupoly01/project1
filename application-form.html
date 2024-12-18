@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Bokku! - Application Form</title>
+  <link rel="stylesheet" href="application-form.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+
+    <nav class="navbar">
+      <div class="logo"><a href="index.html"> bokku! </a></div>
+      <div class="hamburger"> <i class="fas fa-bars"> </i></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+         <li>  <a href="about.html"> About</a> </li>
+         <li ><a href="products.html" >Products</a></li>
+         <li><a href="contact.html">Contact</a></li>
+         <li><a href="location.html">Find us</a></li>
+      </ul>
+   </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <img src="images/bokku!-yellow-bg.jpg" alt="Bokku!" class="hero-logo">
+        <h1>Join Our Team</h1>
+        <p>We’re looking for passionate, motivated individuals. Apply below and be part of something great!</p>
+      </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section class="form-section">
+      <div class="form-container">
+        <h2>Apply for a Position</h2>
+        <p>Fill out the form below, and let’s get started!</p>
+
+        <form action="/submit" method="POST" enctype="multipart/form-data" class="application-form">
+          <!-- Resume Upload -->
+          <div class="form-group">
+              <label for="resume"><i class="fas fa-file-upload"></i> Upload Resume<span>*</span></label>
+              <input type="file" id="resume" name="resume" required>
+          </div>
+          <!-- Full Name -->
+          <div class="form-group">
+              <label><i class="fas fa-user"></i> Full Name<span>*</span></label>
+              <div class="split-input">
+                  <input type="text" name="first_name" placeholder="First Name" required>
+                  <input type="text" name="last_name" placeholder="Last Name" required>
+              </div>
+          </div>
+          <!-- Address -->
+          <div class="form-group">
+              <label><i class="fas fa-map-marker-alt"></i> Address<span>*</span></label>
+              <input type="text" name="street" placeholder="Street Address" required>
+              <div class="split-input">
+                  <input type="text" name="city" placeholder="City" required>
+                  <input type="text" name="state" placeholder="State / Province" required>
+              </div>
+          </div>
+          <!-- Email -->
+          <div class="form-group">
+              <label><i class="fas fa-envelope"></i> Email<span>*</span></label>
+              <input type="email" name="email" placeholder="example@mail.com" required>
+          </div>
+          <!-- Phone -->
+          <div class="form-group">
+              <label><i class="fas fa-phone"></i> Phone<span>*</span></label>
+              <input type="tel" name="phone" placeholder="(000) 000-0000" required>
+          </div>
+          <!-- Position Dropdown -->
+          <div class="form-group">
+              <label><i class="fas fa-briefcase"></i> Position Applied For<span>*</span></label>
+              <select name="position" required>
+                  <option value="" disabled selected>Select a position </option>
+                  <option>Area Manager</option>
+                  <option>Baker</option>
+                  <option>Store Supervisor</option>
+                  <option>Sales Associate</option>
+                  <option>Logistics Manager</option>
+                  <option>Accountant</option>
+                  <option>Site Finder</option>
+                  <option value="">Internal Transport</option>
+                  <option value="">Maintenance</option>
+                  <option value="">Dispatch Manager</option>
+                  <option value="">Sales Manager</option>
+                  <option value="">Inventory Analyst</option>
+                  <option value="">Receiving Manager</option>
+              </select>
+          </div>
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn">Submit Application</button>
+      </form>
+      
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Need help? Visit your nearest <strong>Bokku!</strong> store or contact us.</p>
+    </footer>
+
+  </div>
+
+  <script src="application-form.js"></script>
+
+</body>
+</html>

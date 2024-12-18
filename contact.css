@@ -1,0 +1,329 @@
+/* Root Variables */
+:root {
+	--primary-color:#000d81;
+	--accent-color:#f5eb00;
+	--text-light:#ffffff;
+	--text-dark:#000000;
+	--background-color:#e2e2e2;
+	--background-dark:#0a0a23;
+	--background-overlay:rgba(0,0,0,0.6);
+}
+
+/* Reset and General Styles */
+* {
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	text-decoration:none;
+	list-style:none;
+	scroll-behavior:smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+/* Navbar Styling */
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 70px;
+	background:rgba(0,13,129,0.767);
+	backdrop-filter: blur(8px);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 2rem;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar.scrolled {
+	background: rgba(0, 0, 0, 0.9);
+	height: 60px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Styling */
+.logo a {
+	color: var(--accent-color);
+	font-size: 1.8rem;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+/* Hamburger Menu */
+.hamburger {
+	display: none;
+	font-size: 1.8rem;
+	color: var(--accent-color);
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.hamburger:hover {
+	color: var(--text-light);
+}
+
+/* Navigation Links */
+.nav-links {
+	display: flex;
+	gap: 1.5rem;
+	list-style: none;
+	transition: all 0.3s ease-in-out;
+}
+
+.nav-links a {
+	color: var(--accent-color);
+	font-size: 1rem;
+	font-weight: 500;
+	position: relative;
+	transition: color 0.3s ease-in-out;
+}
+
+.nav-links a::after {
+	content: "";
+	position: absolute;
+	bottom: -3px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background-color: var(--accent-color);
+	transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+	width: 100%;
+}
+
+.nav-links a:hover {
+	color: var(--accent-color);
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+.hamburger {
+	display: block; /* Show hamburger icon on mobile */
+	z-index: 1100; /* Ensure it's above the menu */
+}
+
+.nav-links {
+	position: absolute;
+	top: 70px;
+	left: 0;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.781);
+	backdrop-filter: blur(10px);
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	padding: 2rem 0;
+	transform: translateY(-100%); /* Hide menu completely off-screen */
+	visibility: hidden; /* Ensure it doesn't interfere when hidden */
+	opacity: 0; /* Fully transparent when hidden */
+	transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
+	z-index: 1000; /* Place it above other elements but below the hamburger */
+}
+
+.nav-links.open {
+	transform: translateY(0); /* Slide down to show the menu */
+	visibility: visible; /* Make menu interactable */
+	opacity: 1; /* Fully visible */
+}
+}
+/* Main Container */
+.container {
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+    max-width: 900px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Main White Box */
+.main-box {
+    position: relative;
+    background-color: var(--text-light);
+    display: flex;
+    min-height: 500px;
+}
+
+/* Yellow Section */
+.yellow-section {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    background-color: var(--accent-color);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+}
+
+/* Contact Form */
+.contact-form {
+    flex: 1;
+    padding: 40px;
+    max-width: 450px; 
+    color: aliceblue;
+}
+
+.contact-form h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.contact-form p {
+    color: var(--text-dark);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+label {
+    color: var(--primary-color);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  label i {
+    margin-right: 0.5rem;
+    font-size: 20px;
+    color: var(--primary-color);
+  }
+  
+  input, select {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .split-input {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .split-input input {
+    flex: 1;
+  }
+
+  input, textarea{
+    padding: 0.5rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid var(--text-dark);
+  }
+
+  textarea{
+    overflow-y: auto;
+    margin-bottom: 5px;
+    resize: none;
+  }
+  
+  /* Submit Button */
+  .submit-btn {
+    width: 40%;
+    padding: 0.7rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+  }
+
+/* Black Info Box */
+.info-box {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    padding: 30px;
+    width: 250px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.info-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.info-box ul {
+    list-style: none;
+}
+
+.info-box ul li {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.info-box ul li i {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-box {
+        flex-direction: column;
+    }
+
+    .yellow-section {
+        display: none;
+    }
+
+    .contact-form {
+        max-width: 100%; /* Use full width on small screens */
+        padding: 20px;
+    }
+
+    .info-box {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 100%;
+        box-shadow: none;
+    }
+}
