@@ -206,7 +206,7 @@ body {
 	border-radius:50px;
 	cursor:pointer;
 	box-shadow:0 4px 6px var(--dark-overlay);
-	z-index:1000;
+	z-index:1100;
 	transition:background-color 0.3s,transform 0.3s;
 }
 .find-nearest-btn:hover {

@@ -1,3 +1,11 @@
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+// Toggle navigation menu on hamburger click
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+
 const map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 6.5244, lng: 3.3792 }, // Lagos, Nigeria
     zoom: 11
