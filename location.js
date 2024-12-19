@@ -1,6 +1,7 @@
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 
+
 // Toggle navigation menu on hamburger click
 hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('open');
@@ -58,6 +59,7 @@ const stores = [
 
 const storeList = document.getElementById('store-list');
 const infoWindows = [];
+const markers = [];
 
 function formatStoreInfo(store, distance) {
 const currentTime = new Date();
@@ -86,7 +88,17 @@ function addStoreMarkers() {
         });
 
         const infoWindow = new google.maps.InfoWindow({
-            content: `<h3>${store.name}</h3><p>${store.address}</p>`
+            content: `<div style="font-family: Arial, sans-serif; line-height: 1.5; width: 250px;">
+            <h3 style="margin: 0; font-size: 16px; font-weight: bold;">${store.name}</h3>
+            <p style="margin: 4px 0; color: #666; font-size: 14px;">${store.address}</p>
+            <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
+            style="padding: 8px 12px; background-color: #4285F4; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
+            Get Directions
+        </button>
+        <hr style="margin: 12px 0; border: none; border-top: 1px solid #ccc;">
+        <p style="margin: 4px 0; font-size: 14px;"><strong>Opening Hours:</strong></p>
+        <p style="margin: 4px 0; font-size: 14px;">Monday - Sunday: 9:00 AM - 9:00 PM</p>
+    </div>`
         });
         infoWindows.push(infoWindow);
 
