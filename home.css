@@ -249,6 +249,12 @@ body {
 	}
 	#welcome p {
 		font-size: 1.3rem;
+		margin-top: 1rem;
+	}
+	.cta-buttons a{
+		padding: 1rem 2rem;
+		font-size: 1.1rem;
+		margin: 0.7rem;
 	}
       }
 /* Hero Slider Base */
