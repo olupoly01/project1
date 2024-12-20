@@ -69,7 +69,7 @@ const isOpen = currentTime.getHours() >= openTime && currentTime.getHours() < cl
 
 return `
 <h3> <span class="status ${isOpen ? 'open' : 'closed'}">${isOpen ? 'Open ' : 'Closed'}</span>  ${store.name}</h3>
-<p>${store.address}.   |  ${distance.toFixed(2)} kilometers away</p>
+<p>  ${store.address}.   |  ${distance.toFixed(2)} kilometers away</p>
 <button class="view-on-map">View on Map</button>
 <a href="https://www.google.com/maps/dir/?api=1&destination=${store.lat},${store.lng}" target="_blank" class="view-on-map">Directions</a>
 <p>Opening Hours: Mon-Sun, 9:00 AM - 9:00 PM</p>
@@ -86,16 +86,13 @@ function addStoreMarkers() {
         });
 
         const infoWindow = new google.maps.InfoWindow({
-            content: `<div style="font-family: Arial, sans-serif; line-height: 1.5; width: 250px;">
+            content: `<div style="font-family: Montserrat, sans-serif; line-height: 1; width: 250px;">
             <h3 style="margin: 0; font-size: 16px; font-weight: bold;">${store.name}</h3>
-            <p style="margin: 4px 0; color: #666; font-size: 14px;">${store.address}</p>
+            <p style="margin: 7px 0; color: #666; font-size: 14px;">${store.address}</p>
             <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
-            style="padding: 8px 12px; background-color: #4285F4; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
+            style="padding: 6px 10px; background-color: #fff; color: #000; border: 1px solid #000; border-radius: 15px; cursor: pointer; font-size: 12px;">
             Get Directions
         </button>
-        <hr style="margin: 12px 0; border: none; border-top: 1px solid #ccc;">
-        <p style="margin: 4px 0; font-size: 14px;"><strong>Opening Hours:</strong></p>
-        <p style="margin: 4px 0; font-size: 14px;">Monday - Sunday: 9:00 AM - 9:00 PM</p>
     </div>`
         });
         infoWindows.push(infoWindow);
@@ -103,19 +100,14 @@ function addStoreMarkers() {
 // Add a marker click listener to show the info window
 marker.addListener('click', () => {
 infoWindows.forEach(iw => iw.close()); // Close other info windows
-infoWindow.setContent(`
-<div style="font-family: Arial, sans-serif; line-height: 1.5; width: 250px;">
-    <h3 style="margin: 0; font-size: 16px; font-weight: bold;">${store.name}</h3>
-    <p style="margin: 4px 0; color: #666; font-size: 14px;">${store.address}</p>
-    <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
-        style="padding: 8px 12px; background-color: #4285F4; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
-        Get Directions
-    </button>
-    <hr style="margin: 12px 0; border: none; border-top: 1px solid #ccc;">
-    <p style="margin: 4px 0; font-size: 14px;"><strong>Opening Hours:</strong></p>
-    <p style="margin: 4px 0; font-size: 14px;">Monday - Sunday: 9:00 AM - 9:00 PM</p>
-</div>
-`);
+infoWindow.setContent(`<div style="font-family: Montserrat, sans-serif; line-height: 1; width: 250px;">
+<h3 style="margin: 0; font-size: 16px; font-weight: bold;">${store.name}</h3>
+<p style="margin: 7px 0; color: #666; font-size: 14px;">${store.address}</p>
+<button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
+style="padding: 6px 10px; background-color: #fff; color: #000; border: 1px solid #000; border-radius: 15px; cursor: pointer; font-size: 12px;">
+Get Directions
+</button>
+</div>`);
 infoWindow.open(map, marker);
 });
 
@@ -125,19 +117,14 @@ map.setZoom(15); // Adjust zoom level
 map.setCenter(marker.getPosition()); // Center map on marker
 infoWindows.forEach(iw => iw.close()); // Close other info windows
 const infoWindow = new google.maps.InfoWindow();
-infoWindow.setContent(`
-<div style="font-family: Arial, sans-serif; line-height: 1.5; width: 250px;">
-    <h3 style="margin: 0; font-size: 16px; font-weight: bold;">${store.name}</h3>
-    <p style="margin: 4px 0; color: #666; font-size: 14px;">${store.address}</p>
-    <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
-        style="padding: 8px 12px; background-color: #4285F4; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">
-        Get Directions
-    </button>
-    <hr style="margin: 12px 0; border: none; border-top: 1px solid #ccc;">
-    <p style="margin: 4px 0; font-size: 14px;"><strong>Opening Hours:</strong></p>
-    <p style="margin: 4px 0; font-size: 14px;">Monday - Sunday: 9:00 AM - 9:00 PM</p>
-</div>
-`);
+infoWindow.setContent(`<div style="font-family: Montserrat, sans-serif; line-height: 1; width: 250px;">
+<h3 style="margin: 0; font-size: 16px; font-weight: bold;">${store.name}</h3>
+<p style="margin: 7px 0; color: #666; font-size: 14px;">${store.address}</p>
+<button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
+style="padding: 6px 10px; background-color: #fff; color: #000; border: 1px solid #000; border-radius: 15px; cursor: pointer; font-size: 12px;">
+Get Directions
+</button>
+</div>`);
 infoWindow.open(map, marker);
 }
 
