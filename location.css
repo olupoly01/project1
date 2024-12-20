@@ -22,6 +22,7 @@
 	font-family: 'Montserrat', sans-serif;
 }
 body {
+	font-family:'Montserrat',sans-serif;
 	display:flex;
 	flex-direction:column;
 	height:100vh;
@@ -116,7 +117,7 @@ body {
 	top: 70px;
 	left: 0;
 	width: 100%;
-	background: rgba(0, 0, 0, 0.781);
+	background: rgba(0, 0, 0, 0.568);
 	backdrop-filter: blur(10px);
 	flex-direction: column;
 	align-items: center;
