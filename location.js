@@ -68,13 +68,11 @@ const closeTime = 21;
 const isOpen = currentTime.getHours() >= openTime && currentTime.getHours() < closeTime;
 
 return `
-<h3>${store.name}</h3>
-<p>${store.address}</p>
-<p>${distance.toFixed(2)} kilometers away</p>
-<p>Opening Hours: Mon-Sun, 9:00 AM - 9:00 PM</p>
-<p>Status: <span class="status ${isOpen ? 'open' : 'closed'}">${isOpen ? 'Open' : 'Closed'}</span></p>
+<h3> <span class="status ${isOpen ? 'open' : 'closed'}">${isOpen ? 'Open ' : 'Closed'}</span>  ${store.name}</h3>
+<p>${store.address}.   |  ${distance.toFixed(2)} kilometers away</p>
 <button class="view-on-map">View on Map</button>
-<a href="https://www.google.com/maps/dir/?api=1&destination=${store.lat},${store.lng}" target="_blank" class="view-on-map">Get Directions</a>
+<a href="https://www.google.com/maps/dir/?api=1&destination=${store.lat},${store.lng}" target="_blank" class="view-on-map">Directions</a>
+<p>Opening Hours: Mon-Sun, 9:00 AM - 9:00 PM</p>
 `;
 }
 

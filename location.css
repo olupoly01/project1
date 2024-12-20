@@ -6,7 +6,7 @@
 	--text-light:#ffffff;
 	--background-color:#f9f9f9;
 	--background-dark:#0a0a23;
-	--btn-hover-color:#d5d2ff;
+	--btn-hover-color:#37327aec;
 	--dark-overlay:rgba(0,0,0,0.342);
 	--open-bg-color:#d4edda;
 	--open-text-color:#28a745;
@@ -67,10 +67,6 @@ body {
 	color: var(--accent-color);
 	cursor: pointer;
 	transition: color 0.3s;
-}
-
-.hamburger:hover {
-	color: var(--text-light);
 }
 
 /* Navigation Links */
@@ -140,7 +136,7 @@ body {
 }
 }
 #map {
-	height:40vh;
+	height:35vh;
 	width: 100%;
 }
 .main-container {
@@ -154,32 +150,30 @@ body {
 	padding:10px;
 	overflow-y:auto;
 	flex:1;
-	box-shadow:0 0 10px var(--dark-overlay);
-	max-height: calc(50vh - 5rem);
+	max-height: 65vh;
 }
 .store {
-	padding:10px;
-	margin-bottom:5px;
-	border:1px solid var(--secondary-color);
-	border-radius:8px;
-	transition:box-shadow 0.3s ease,transform 0.3s ease;
-	background-color:var(--background-color);
+	padding:20px 30px;
+	margin-bottom:7px;
+	border: none;
+	border-bottom:1px solid var(--secondary-color);
+	background-color:var(--text-light);
 }
 .store h3 {
 	margin:0 0 5px;
-	font-size:16px;
-	color:var(--primary-color);
+	font-size:14px;
+	color:var(--text-color);
 }
 .store p {
 	margin:5px 0;
-	font-size:13px;
+	font-size:12px;
 	color:var(--text-color);
 }
 .status {
 	display:inline-block;
-	padding:5px 10px;
-	border-radius:5px;
-	font-size:14px;
+	padding:4px 8px;
+	border-radius:15px;
+	font-size:12px;
 	font-weight:bold;
 }
 .status.open {
@@ -191,8 +185,8 @@ body {
 	color:var(--closed-text-color);
 }
 .nearest {
-	background-color:#d4edda;
-	border:2px solid #28a745;
+	background-color:#e0f1e4;
+	border:1px solid #28a745;
 }
 .find-nearest-btn {
 	position:fixed;
@@ -211,22 +205,16 @@ body {
 }
 .find-nearest-btn:hover {
 	background-color:var(--btn-hover-color);
-	color:var(--primary-color);
-	transform:scale(1.1);
 }
 .view-on-map {
-	background-color:var(--accent-color);
-	color:var(--primary-color);
-	border:none;
-	padding:8px 12px;
-	border-radius:5px;
+	color:var(--text-dark);
+	background-color: var(--text-light);
+	border: 1px solid #000000 ;
+	padding:5px 10px;
+	border-radius:15px;
 	cursor:pointer;
-	font-size:14px;
-	font-weight:bold;
+	font-size:12px;
 	transition:background-color 0.3s;
-}
-.view-on-map:hover {
-	background-color:var(--btn-hover-color);
 }
 @media (min-width:768px) {
 	.main-container {
