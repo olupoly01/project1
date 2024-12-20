@@ -251,6 +251,9 @@ body {
 	#welcome h1{
 		font-size: 3.5rem;
 	}
+	#welcome p {
+		font-size: 1.3rem;
+	}
       }
 /* Hero Slider Base */
 	.hero-slider {
