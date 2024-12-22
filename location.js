@@ -13,6 +13,10 @@ const map = new google.maps.Map(document.getElementById('map'), {
 });
 
 const stores = [
+    {name: 'Bokku! Mart Old Ogba Rd', address: '100 Ogba Rd, Ijaiye, Lagos 102212, Lagos', lat:6, lng: 3.2},
+
+    {name: 'Bokku! Mart Egbeda-idimu', address: '95 Idimu Rd, Idimu, Lagos 102213, Lagos', lat:6.583044596786429, lng: 3.283498176417533},
+
     {name: 'Bokku! Mart Adetola St, Aguda', address: '230 Adetola St, Ijesha Tedo, Aguda 101241, Lagos', lat: 6.480868931935028,  lng: 3.3316940588747097},
 
     {name: 'Bokku! Mart Ijesha Rd, Surulere', address: '233 Ijesha Rd, Surulere, Lagos 101241, Lagos', lat: 6.497039464351658, lng: 3.32626581163573}, 
@@ -121,7 +125,7 @@ const stores = [
 
     {name: 'Bokku! Mart Idimu-Ejigbo Rd', address: '113 idimu Ejigbo Rd, Ejigbo, 102214, Lagos', lat: 6.543022895661886,  lng: 3.3084304116311896}, 
 
-    {name: 'Bokku! Mart Ile Iwe, Ikotun', address: '56 Egbe Rd, Ikotun, Igando 102213, Lagos', lat: 6,  lng: 3}, 
+    {name: 'Bokku! Mart Ile Iwe, Ikotun', address: '56 Egbe Rd, Ikotun, Igando 102213, Lagos', lat: 6.544642,  lng: 3.276137}, 
 
     {name: 'Bokku! Mart Oworo Rd, Oworonsoki', address: '60 Oworo Rd, Oworosoki, Lagos 105102, Lagos', lat: 6.549560529407427, lng: 3.401244017740445}, 
 
@@ -144,7 +148,8 @@ const stores = [
     {name: 'Bokku! Mart Oritshe, Ikeja', address: '5 Oritshe St, Allen, Ikeja 101233, Lagos', lat: 6.601279997515536,  lng: 3.3444250535047813},
 
     {name: 'Bokku! Mart ifelodun St, Ejigbo', address: '86 Ifelodun St, Ejigbo, Lagos 102214, Lagos', lat:6.565077832310384,  lng: 3.3008488883180296},
-    
+
+     
 ]; 
 
 const storeList = document.getElementById('store-list');
