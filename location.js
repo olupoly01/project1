@@ -13,49 +13,139 @@ const map = new google.maps.Map(document.getElementById('map'), {
 });
 
 const stores = [
-    { name: 'Milaco Plaza, Okota', address: '120, Ago Palace Way, Okota', lat: 6.4869, lng: 3.3285 },
-    { name: 'Thomas Salako St, Ogba', address: '45, Thomas Salako Street, Ogba', lat: 6.6296, lng: 3.3486 },
-    { name: 'Candos Rd, Baruwa', address: '55 Candos Road, Baruwa, Ipaja', lat: 6.6036, lng: 3.2646 },
-    { name: 'TOS Benson Rd, Ikorodu', address: '59, T.O.S Benson Road, Ikorodu', lat: 6.6194, lng: 3.5086 },
-    { name: 'Eluku St, Ikorodu', address: '17, Eluku Street, Ikorodu', lat: 6.6222, lng: 3.5210 },
-    { name: 'Egbe Rd, Ejigbo', address: '44, Egbe Road, Ejigbo', lat: 6.5781, lng: 3.3072 },
-    { name: 'Muyibi St, Ogba', address: '5, Muyibi Street, Ogba', lat: 6.6211, lng: 3.3500 },
-    { name: 'Ijesha Rd, Surulere', address: '82, Ijesha Road, Surulere', lat: 6.5084, lng: 3.3556 },
-    { name: 'Jonathan Coker St, Fagba', address: '6, Jonathan Coker Street, Fagba', lat: 6.6440, lng: 3.3307 },
-    { name: 'Church St, Oshodi', address: '50, Church Street, Oshodi', lat: 6.5513, lng: 3.3430 },
-    { name: 'Adetola St, Aguda', address: '230, Adetola Street, Aguda, Surulere', lat: 6.5142, lng: 3.3495 },
-    { name: 'Ijede Rd, Ikorodu', address: 'All Saints Estate, Poro Boge, Along Ijede Rd, Ikorodu', lat: 6.6050, lng: 3.5121 },
-    { name: 'Abeokuta Exp. Way, Alakuko', address: '901, Abeokuta Expressway, Alakuko', lat: 6.6500, lng: 3.3025 },
-    { name: 'Itamaga, Ikorodu', address: '6, Ijede Road, Itamaga, Ikorodu', lat: 6.6194, lng: 3.5090 },
-    { name: 'Aina St, Berger', address: '6, Aina Street, Ojodu-Berger', lat: 6.6310, lng: 3.3478 },
-    { name: 'Williams St, Ikeja', address: '10, Williams Street, Gbagada', lat: 6.5584, lng: 3.3811 },
-    { name: 'Meiran Rd, Meiran', address: '9, Meiran Road, Meiran', lat: 6.6290, lng: 3.2460 },
-    { name: 'Ijaiye Rd, Agege', address: '9, Ijaiye Road, Agege', lat: 6.6194, lng: 3.3314 },
-    { name: 'Herbert Macaulay Way, Yaba', address: '299, Herbert Macaulay Way, Yaba', lat: 6.5087, lng: 3.3735 },
-    { name: 'Oguntolu St, Shomolu', address: '66, Oguntolu Street, Onipanu-Shomolu', lat: 6.5378, lng: 3.3765 },
-    { name: 'Agbado Rd, Ijankara', address: '80, Agbado Road, Ijankara', lat: 6.6453, lng: 3.2642 },
-    { name: 'Ipaja Rd, Ipaja', address: '264, Ipaja Road, Ipaja', lat: 6.6197, lng: 3.2823 },
-    { name: 'Ogurumbi St, Idimu', address: '2, Ogurumbi Street, Idimu', lat: 6.6006, lng: 3.3028 },
-    { name: 'Agboju, Festac', address: '21, Agboju Road, Festac', lat: 6.4636, lng: 3.2346 },
-    { name: 'Mosaferjo Rd, Amuwo', address: '21, Mosaferjo Road, Amuwo', lat: 6.4526, lng: 3.2118 },
-    { name: 'Fashoro, Ojuelegba', address: '7, Fashoro Street, Off Fashoro, Ojuelegba', lat: 6.5115, lng: 3.3625 },
-    { name: 'Ebun St, Lawanson', address: '115, Ebun Street, Off Itire Road, Lawanson', lat: 6.5094, lng: 3.3610 },
-    { name: 'Depot, Shomolu', address: '15, Depot Street, Shomolu', lat: 6.5448, lng: 3.3790 },
-    { name: 'Odo St, Bariga', address: '6, Odo Street, Bariga', lat: 6.5471, lng: 3.3824 },
-    { name: 'Oguntona St, Bariga', address: '8, Oguntona Street, Bariga', lat: 6.5544, lng: 3.3821 },
-    { name: 'Olugbode St, Mushin', address: '4, Olugbode Street, Mushin', lat: 6.5297, lng: 3.3556 },
-    { name: 'College Rd, Ogba', address: '69, College Road, Ogba', lat: 6.6283, lng: 3.3470 },
-    { name: 'Jibowu St, Ebutte Metta', address: '48, Jebba Street, Ebute Metta', lat: 6.4875, lng: 3.3784 },
-    { name: 'Makoko St, Makoko', address: '5, Makoko Street, Makoko', lat: 6.5017, lng: 3.3867 },
-    { name: 'Ifako-Agege', address: '7, Oba Akinjobi, Ifako-Agege', lat: 6.6237, lng: 3.3323 },
-    { name: 'Odo Olowu, Iju-Ishaga', address: '10, Odo-Olowu Street, Iju-Ishaga', lat: 6.6550, lng: 3.2960 },
-    { name: 'Ogunwusi St, Iyana-Ipaja', address: '6, Ogunwusi Street, Iyana-Ipaja', lat: 6.6190, lng: 3.2825 },
-    { name: 'Oduduwa Crescent, Ikeja', address: '42, Oduduwa Crescent, Ikeja', lat: 6.5964, lng: 3.3418 },
-    { name: 'Mushin Rd, Isolo', address: '76, Mushin Road, Isolo', lat: 6.5417, lng: 3.3068 },
-    { name: 'Ikorodu Rd, Ojota', address: '51, Ikorodu Road, Ojota', lat: 6.5800, lng: 3.3816 },
-    { name: 'Gowon St, Iyana-Ipaja', address: '10, Gowon Street, Iyana-Ipaja', lat: 6.6161, lng: 3.2789 },
-    { name: 'Oduduwa St, Yaba', address: '20, Oduduwa Street, Yaba', lat: 6.5139, lng: 3.3702 }
-];
+    {name: 'Bokku! Mart Adetola St, Aguda', address: '230 Adetola St, Ijesha Tedo, Aguda 101241, Lagos', lat: 6.480868931935028,  lng: 3.3316940588747097},
+
+    {name: 'Bokku! Mart Ijesha Rd, Surulere', address: '233 Ijesha Rd, Surulere, Lagos 101241, Lagos', lat: 6.497039464351658, lng: 3.32626581163573}, 
+
+    {name: 'Bokku! Mart Ijesha Rd, Surulere', address: '84 Ijesha Rd, Surulere, Lagos 102215, Lagos', lat: 6.506255628569018, lng: 3.333825129422417}, 
+     
+    {name: 'Bokku! Mart Alh. Kudirat Adenekan St, Isolo', address: '48A Alh. Kudirat Adenekan St, Isolo, Oshodi/Isolo 102214, Lagos', lat: 6.540767864032124, lng: 3.3172191410835254},  
+
+    {name: 'Bokku! Mart Liasu Road, Ikotun', address: '27 Liasu Rd, Alimosho, Ikeja 102213, Lagos', lat: 6.556402, lng: 3.280159},
+
+    {name: 'Bokku! Mart Itire Street, Mushin', address: '233 Itire St, Idi-Araba, Mushin 102215, Lagos', lat: 6.5123328264950455,  lng: 3.3404004705313217},
+
+    {name: 'Bokku! Mart Idi-Araba, Mushin', address: '111 Ishaga Rd, Idi-Araba, Lagos 102215, Lagos', lat: 6.519742696617311,  lng: 3.34614655887471},
+    
+    { name: 'Ijegun road, via adekunle odunilami street', address: '134,Ijegun road, via adekunle odunilami street. Ti-oluwani bus stop ijegun, road, Ikotun, Lagos 300001, Nigeria', lat:  6.521285,lng: 3.257346 },
+    
+    { name: 'Bokku! Mart Ijegun - Ikotun Rd, Ijegun', address: '268 Ijegun - Ikotun Rd, Ijegun, Lagos 102213, Lagos, Nigeria', lat: 6.526274, lng:  3.258049 },
+
+    { name: 'Bokku! Mart Ago Palace', address: '120 Ago Palace Way, Ilasamaja, Okota 102214, Lagos', lat: 6.503654099072547, lng:  3.3042997507034375}, 
+
+    {name: 'Bokku! Mart Apapa Road, Ebute-metta', address: '135 Apapa Rd, Ebute Metta, Lagos Mainland 101245, Lagos', lat: 6.485143632059542,  lng: 3.372765478445745}, 
+
+    {name: 'Bokku Mart Oguntolu St, Somolu', address: '66 Oguntolu St, Somolu, Lagos 102216, Lagos', lat: 6.54072341062299,  lng: 3.3691998483291847},
+
+    {name: 'Bokku! Mart Abule Okuta Road, Bariga', address: 'Local Government, 10 Abule Okuta Road Shomolu, Bariga, 102216, Lagos', lat: 6.53706483554634, lng: 3.390568440548468 },
+
+    {name: 'Bokku! Mart Apena St, Idi Oro', address: 'G986+2CQ, Apena St, Idi Oro, Lagos 101241, Lagos', lat: 6.515420784111327 , lng: 3.361026513494091 },
+
+    {name: 'Bokku! Mart Shogbamu St, Bariga', address: '8 Shogbamu St, Somolu, Lagos 102216, Lagos', lat:  6.546461088200409, lng: 3.393897933068229 },
+
+    {name: 'Bokku! Mart Tawose St, Ilupeju', address: '26 Tawose St, Onipanu, Ilupeju 102215, Lagos', lat: 6.537893916710171,  lng: 3.3636710514349017 },
+
+    {name: 'Bokku! Mart Morocco Rd', address: '22 Morocco Rd, Somolu, Lagos 102216, Lagos', lat: 6.536700100174705,  lng: 3.373321258055488 }, 
+
+    {name: 'Bokku! Mart Jebba St', address: '54 Jebba St, Adekunle, Lagos 101245, Lagos', lat:  6.485272607090841, lng: 3.3874721787820365}, 
+
+    {name: 'Bokku! Mart Agege Motor Rd, Mushin', address: '90 Agege Motor Rd, Fadeyi, Lagos 102215, Lagos', lat:  6.522846666894248, lng: 3.3634316763606598}, 
+
+    {name: 'Bokku! Mart Coker Street, Mushin', address: '28 Coker St, Mushin, Lagos 102215, Lagos', lat:   6.530131328917353, lng: 3.358758205501158}, 
+
+    {name: 'Bokku! Mart Ladipo Str, Mushin', address: '54 Ladipo St, Papa Ajao, Mushin 102215, Lagos', lat:  6.533631933098583,  lng: 3.349201941083525}, 
+
+    {name: 'Bokku! Mart Ilaje Road', address: '61 Ilaje Rd, Akoka, Lagos 102216, Lagos', lat:  6.531234564103008,  lng: 3.394941294167153}, 
+
+    {name: 'Bokku! Mart Church street, Makoko', address: 'Local Government, 42-68 Church Street, Makoko, Yaba, 101245, Lagos', lat:  6.497897834389064,   lng: 3.3866978058223567}, 
+
+    {name: 'Bokku! Mart Ogunmefun street, Shomolu', address: '8 Eyiowuawi St, Pedro, Lagos 300001, Lagos', lat:  6.546113099272018,   lng: 3.37399786349452},  
+
+    {name: 'Bokku! Mart Herbert Macaulay way, Yaba', address: 'Local Government, 301 Herbert Macaulay way, Spencer bus-stop,Alagomeji-Yaba, Yaba, 100001, Lagos', lat: 6.502242399358308,  lng: 3.3769815058084545}, 
+
+    {name: 'Bokku! Mart Old Yaba Rd, Adekunle', address: '52 Old Yaba Rd, Adekunle, Lagos 101245, Lagos', lat: 6.494460994990153,  lng: 3.3805417233269024}, 
+
+    {name: 'Bokku! Mart Apapa Road, Ebute-metta', address: '135 Apapa Rd, Ebute Metta, Lagos Mainland 101245, Lagos', lat: 6.481843617502645,  lng: 3.3719692573489493}, 
+
+    {name: 'Bokku! Mart University road, Yaba', address: '6 University road Yaba, Onike, 101245, Lagos', lat: 6.514742965555715,  lng: 3.376484958569486}, 
+
+    {name: 'Bokku! Mart Tijani Str, Bariga', address: '38 Tijani Ashogbon St, Bariga, Lagos 102216, Lagos', lat: 6.536504999290008,  lng: 3.391968729121693}, 
+    
+    {name: 'Bokku! Mart Ojuelegba Rd, Surulere', address: '129 Ojuelegba Rd, Surulere, Lagos 101241, Lagos', lat: 6.51040493048226,  lng: 3.360968423599629}, 
+
+    {name: 'Bokku! Mart, Owodunni Str, Iwaya, Yaba', address: '20 Owodunni St, Iwaya, Lagos 101245, Lagos', lat: 6 ,  lng: 3 }, 
+
+    {name: 'Bokku! Mart Shyllon Street', address: '69 Shyllon St, Onipanu, Lagos 102215, Lagos', lat:6.539606199283818, lng: 3.3654778235996288 }, 
+
+    {name: 'Bokku! Mart Igi Olugbin St, Bariga', address: '26 Igi Olugbin St, Bariga, Lagos 102216, Lagos', lat: 6.5380980978604635, lng: 3.385939994151835}, 
+
+    {name: 'Bokku! Mart Ebun St, Lawanson', address: '115 Ebun St, Lawanson, Lagos 101241, Lagos', lat: 6.512362277908309,  lng: 3.35013639369357}, 
+
+    {name: 'Bokku! Mart Adeniran Ogunsanya', address: '41 Adeniran Ogunsanya St, Surulere, Lagos 101241, Lagos', lat: 6.494430896869095,  lng: 3.35755935887471}, 
+
+    {name: 'Bokku! Mart Adetola St, Surulere', address: '76 Adetola St, Surulere, Aguda 101241, Lagos', lat: 6.49031839567389,  lng: 3.3369239588747095}, 
+
+    {name: 'Bokku! Mart Ire-Akari Estate Rd', address: '21 Ire-Akari Estate Rd, Isaga Tedo, Lagos 102214, Lagos', lat: 6.526664362754732,  lng: 3.3223525306519774}, 
+
+    {name: 'Bokku! Mart Randle Ave, Surulere', address: '69 Randle Ave, Surulere, Lagos 101241, Lagos', lat: 6.507747396736755,  lng:  3.356584099979117}, 
+
+    {name: 'Bokku! Mart Gaskiya Rd, Ijora', address: 'Local Government, 68 Gaskiya Rd, Ijora, Lagos 102272, Lagos', lat: 6.466653530858381,  lng:   3.357687741083526}, 
+
+    {name: 'Bokku! Mart Ojo road, Ajegunle', address: '66 Ojo Rd, Alaba, Lagos 102103, Lagos', lat:  6.459498127577677,  lng:  3.3387203294269128}, 
+
+    {name: 'Bokku! Mart Coker Road, Orile', address: '62 Coker Rd, Coker, Lagos 101241, Lagos', lat: 6.477001665680404,   lng:  3.33249834110053}, 
+
+    {name: 'Bokku! Mart Alaba Oro Rd, Amukoko', address: '6 Alaba Oro Rd, Amukoko, Ikeja 102103, Lagos', lat: 6.465572232657704,   lng:  3.333780126885631}, 
+
+    {name: 'Bokku! Mart Jakande Gate, Isheri Oshun Rd', address: 'Isheri Oshun Rd, Isheri Osun, Lagos 102214, Lagos', lat: 6.5299582192286625,  lng: 3.3068083558645713}, 
+
+    {name: 'Bokku! Mart Iganmu road, Orile', address: '82 Iganmu Rd, Amukoko, Lagos 102272, Lagos', lat: 6.477452663901611, lng: 3.3463441588702225}, 
+
+    {name: 'Bokku! Mart Isolo Road, Ijegun', address: '114 Isolo Rd, Ijegun, Lagos 102213, Lagos', lat: 6.528387328245631,  lng: 3.2612468061092565}, 
+
+    {name: 'Bokku Mart, Orile Amukoko', address: '21 Mosafejo Rd, Amukoko, Lagos 102103, Lagos', lat: 6.46604622108175,  lng: 3.341496254964037},
+
+    {name: 'Bokku! Mart Oba Olu-Iwa Rd, Apapa', address: '67 Oba Olu-Iwa Rd, Apapa, Lagos 102103, Lagos', lat: 6.448361965239913,  lng: 3.3365500883180306}, 
+
+    {name: 'Bokku! Mart Ramoni Jimoh St, Ejigbo', address: '1 Ramoni Jimoh St, Ejigbo, Lagos 102214, Lagos', lat: 6.537833453364171,  lng: 3.304784612243904}, 
+
+    {name: 'Bokku! Mart Egbe Rd, Ejigbo', address: '58 Egbe Rd, Ejigbo, Lagos 102214, Lagos', lat: 6.5377616409335495, lng: 3.3045968662302987}, 
+
+    {name: 'Bokku! Mart Okota Rd', address: '70 Okota Rd, Isaga Tedo, Lagos 102214, Lagos', lat: 6.519564632431756,  lng: 3.3178830472136434}, 
+
+    {name: 'Bokku! Mart Igando Rd, Ikotun', address: '36 Igando Rd, Ikotun, Lagos 102213, Lagos', lat:  6.547896127959669,  lng: 3.262626270526803}, 
+
+    {name: 'Bokku! Mart Ayantuga St, Onipanu', address: '26 Ayantuga St, Olowo St, Onipanu, odi 102215, Lagos', lat: 6.533523487327591,  lng: 3.3561628416917104}, 
+
+    {name: 'Bokku! Mart Akanro St, Ilasamaja', address: '17 Akanro St, Ilasamaja, Lagos 102215, Lagos', lat: 6.521331679808103,   lng: 3.3356999116311887}, 
+
+    {name: 'Bokku! Mart Idimu-Ejigbo Rd', address: '113 idimu Ejigbo Rd, Ejigbo, 102214, Lagos', lat: 6.543022895661886,  lng: 3.3084304116311896}, 
+
+    {name: 'Bokku! Mart Ile Iwe, Ikotun', address: '56 Egbe Rd, Ikotun, Igando 102213, Lagos', lat: 6,  lng: 3}, 
+
+    {name: 'Bokku! Mart Oworo Rd, Oworonsoki', address: '60 Oworo Rd, Oworosoki, Lagos 105102, Lagos', lat: 6.549560529407427, lng: 3.401244017740445}, 
+
+    {name: 'Bokku! Mart Ifako-gbagada', address: '20 Williams St Kosofe Ifako, 20 Williams St, Gbagada, Lagos 105102, Lagos', lat: 6.554238164678716,  lng: 3.3939071588448315},
+
+    {name: 'Bokku! Mart Oshodi Rd, Mafoluku', address: '109 Oshodi Rd, Mafoluku, Lagos 100261, Lagos, Lagos 105102, Lagos', lat: 6.556491635333359,  lng: 3.3415230999492187},
+
+    {name: 'Bokku! Mart Idimu road, Ejigbo', address: '101 Idimu Rd, Ejigbo, 102214, Lagos', lat: 6.55889474653892,  lng: 3.298214441053605},
+
+    {name: 'Bokku! Mart Apena Owuromi', address: '1-2 Idimu Rd, Ejigbo, 102214, Lagos', lat: 6.552612255780917,  lng: 3.303626458844832},
+
+    {name: 'Bokku! Mart Ajisegiri st, Shogunle', address: '26 Ajisegiri St, Shogunle, Oshodi/Isolo 102214, Lagos', lat: 6.570329373548591,   lng: 3.3416399480570003},
+
+    {name: 'Bokku! Mart Idimu Rd', address: 'OPC Junction, 2 Ogunrombi St, Idimu, Lagos 102213, Lagos', lat: 6.570329373548591,   lng: 3.3416399480570003},
+
+    {name: 'Bokku! Mart Shasha Rd, Akowonjo', address: 'B4 MASALLACHI BUS-STIO, ALONG Shasha Rd, AKOWONJO, Lagos 102213, Lagos', lat: 6.5927191670897,  lng: 3.3044370564239607},
+
+    {name: 'Bokku! Mart Ogudu Rd', address: 'Local Government, 123 Ogudu Rd, Ogudu, Lagos 105102, Lagos', lat: 6.576421993679981,  lng: 3.390108811631189},
+
+    {name: 'Bokku! Mart Oritshe, Ikeja', address: '5 Oritshe St, Allen, Ikeja 101233, Lagos', lat: 6.601279997515536,  lng: 3.3444250535047813},
+
+    {name: 'Bokku! Mart ifelodun St, Ejigbo', address: '86 Ifelodun St, Ejigbo, Lagos 102214, Lagos', lat:6.565077832310384,  lng: 3.3008488883180296},
+    
+]; 
 
 const storeList = document.getElementById('store-list');
 const infoWindows = [];

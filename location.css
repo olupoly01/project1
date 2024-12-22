@@ -147,7 +147,7 @@ body {
 	height: calc(100vh-70px);
 }
 .sidebar {
-	background:var(--background-color);
+	background: #ffffff;
 	padding:10px;
 	overflow-y:auto;
 	flex:1;
