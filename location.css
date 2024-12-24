@@ -137,7 +137,7 @@ body {
 }
 }
 #map {
-	height:35vh;
+	height:40vh;
 	width: 100%;
 }
 .main-container {
@@ -218,6 +218,108 @@ body {
 	font-size:12px;
 	transition:background-color 0.3s;
 }
+/* Search Bar Styling */
+.search-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	width: 100%;
+	top: 12%;
+	right: 20%;
+	z-index: 14000;
+}
+.search-bar {
+	display: flex;
+	align-items: center;
+	background: var(--text-light);
+	border: 1px solid var(--secondary-color);
+	border-radius: 10px;
+	padding: 10px;
+	width: 21%;
+	position: relative; /* Ensure icons are positioned relative to the bar */
+	box-shadow: 0 4px 6px var(--dark-overlay);
+    }
+    
+    .search-bar input {
+	flex: 1;
+	border: none;
+	outline: none;
+	font-size: 14px;
+	padding: 5px;
+	background: transparent;
+	color: var(--text-color);
+    }
+    
+    .search-bar .fas {
+	cursor: pointer;
+	margin-left: 10px;
+	font-size: 18px;
+	color: var(--secondary-color);
+    }
+    
+    #exit-icon {
+	display: none;
+    }
+    
+    .search-bar input::placeholder {
+	color: var(--secondary-color);
+	font-style: italic;
+    }
+    
+    #search-results {
+	position: absolute;
+	top: 45px;
+	width: 100%;
+	max-width: 300px;
+	background: var(--text-light);
+	box-shadow: 0 4px 8px var(--dark-overlay);
+	border-radius: 8px;
+	overflow-y: auto;
+	max-height: 160px;
+	z-index: 1200;
+	display: none;
+    }
+    
+    #search-results.active {
+	display: block;
+    }
+    
+    #search-results div {
+	padding: 10px;
+	cursor: pointer;
+	transition: background 0.3s ease-in-out;
+    }
+    
+    #search-results div:hover {
+	background: var(--background-color);
+    }
+    
+    #search-results div:not(:last-child) {
+	border-bottom: 1px solid var(--secondary-color);
+    }
+    
+    /* Responsive Styling */
+    @media (max-width: 768px) {
+	.search-container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: absolute;
+		width: 100%;
+		top: 12%;
+		right: auto;
+		z-index: 14000;
+	}
+	.search-bar {
+	    width: 55%;
+	}
+    
+	#search-results {
+	    top: 65px;
+	}
+    }
+    
 @media (min-width:768px) {
 	.main-container {
 	flex-direction:row;

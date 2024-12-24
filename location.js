@@ -171,6 +171,7 @@ return `
 `;
 }
 
+//Add store marker for each store
 function addStoreMarkers() {
     stores.forEach((store, index) => {
         const marker = new google.maps.Marker({
@@ -237,6 +238,64 @@ infoWindow.open(map, marker);
     });
 }
 
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const searchIcon = document.getElementById('search-icon');
+const exitIcon = document.getElementById('exit-icon');
+
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    searchResults.innerHTML = '';
+
+    if (query) {
+        searchResults.classList.add('active');
+        searchIcon.style.display = 'none';
+        exitIcon.style.display = 'inline-block';
+
+        const filteredStores = stores.filter(store =>
+            store.name.toLowerCase().includes(query) ||
+            store.address.toLowerCase().includes(query)
+        );
+
+        if (filteredStores.length) {
+            filteredStores.forEach(store => {
+                const resultItem = document.createElement('div');
+                resultItem.textContent = store.name;
+                resultItem.addEventListener('click', () => {
+                    map.setCenter({ lat: store.lat, lng: store.lng });
+                    map.setZoom(15);
+                });
+                searchResults.appendChild(resultItem);
+            });
+        } else {
+            searchResults.innerHTML = '<div>No results found</div>';
+        }
+    } else {
+        searchResults.classList.remove('active');
+        searchIcon.style.display = 'inline-block';
+        exitIcon.style.display = 'none';
+    }
+});
+
+exitIcon.addEventListener('click', () => {
+    searchInput.value = '';
+    searchResults.classList.remove('active');
+    searchIcon.style.display = 'inline-block';
+    exitIcon.style.display = 'none';
+});
+
+document.addEventListener('click', (event) => {
+    if (!document.getElementById('search-container').contains(event.target)) {
+        searchResults.classList.remove('active');
+        searchIcon.style.display = 'inline-block';
+        exitIcon.style.display = 'none';
+    }
+});
+
+searchInput.addEventListener('click', (event) => {
+    event.stopPropagation();
+});
+
 function findNearestStore() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -294,7 +353,7 @@ if (navigator.geolocation) {
                 map.setCenter(userLocation);
                 map.setZoom(15);
     
-                // Optional: Add a marker for user's location
+                // Add a marker for user's location
                 new google.maps.Marker({
                     position: userLocation,
                     map: map,

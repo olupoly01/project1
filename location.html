@@ -19,7 +19,14 @@
            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-
+    <div class="search-container" id="search-container">
+      <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Search for a Bokku! Mart location">
+          <i id="search-icon" class="fas fa-search"></i> <!-- Font Awesome Search Icon -->
+          <i id="exit-icon" class="fas fa-times" style="display: none;"></i> <!-- Font Awesome Exit Icon -->
+      </div>
+      <div id="search-results"></div>
+  </div>
     <div class="main-container">
         <div id="map"></div>
         <div class="sidebar" id="store-list"></div>
