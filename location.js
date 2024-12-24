@@ -1,6 +1,13 @@
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+} else {
+    console.error('Hamburger or navigation links element not found.');
+}
 
 // Toggle navigation menu on hamburger click
 hamburger.addEventListener('click', () => {
@@ -19,8 +26,6 @@ const stores = [
 
     {name: 'Bokku! Mart Adetola St, Aguda', address: '230 Adetola St, Ijesha Tedo, Aguda 101241, Lagos', lat: 6.480868931935028,  lng: 3.3316940588747097},
 
-    {name: 'Bokku! Mart Ijesha Rd, Surulere', address: '233 Ijesha Rd, Surulere, Lagos 101241, Lagos', lat: 6.497039464351658, lng: 3.32626581163573}, 
-
     {name: 'Bokku! Mart Ijesha Rd, Surulere', address: '84 Ijesha Rd, Surulere, Lagos 102215, Lagos', lat: 6.506255628569018, lng: 3.333825129422417}, 
      
     {name: 'Bokku! Mart Alh. Kudirat St, Isolo', address: '48A Alh. Kudirat Adenekan St, Isolo, Oshodi/Isolo 102214, Lagos', lat: 6.540767864032124, lng: 3.3172191410835254},  
@@ -36,8 +41,6 @@ const stores = [
     { name: 'Bokku! Mart Ijegun - Ikotun Rd, Ijegun', address: '268 Ijegun - Ikotun Rd, Ijegun, Lagos 102213, Lagos, Nigeria', lat: 6.526274, lng:  3.258049 },
 
     { name: 'Bokku! Mart Ago Palace', address: '120 Ago Palace Way, Ilasamaja, Okota 102214, Lagos', lat: 6.503654099072547, lng:  3.3042997507034375}, 
-
-    {name: 'Bokku! Mart Apapa, Ebute-metta', address: '135 Apapa Rd, Ebute Metta, Lagos Mainland 101245, Lagos', lat: 6.485143632059542,  lng: 3.372765478445745}, 
 
     {name: 'Bokku Mart Oguntolu St, Somolu', address: '66 Oguntolu St, Somolu, Lagos 102216, Lagos', lat: 6.54072341062299,  lng: 3.3691998483291847},
 
@@ -77,7 +80,7 @@ const stores = [
     
     {name: 'Bokku! Mart Ojuelegba Rd, Surulere', address: '129 Ojuelegba Rd, Surulere, Lagos 101241, Lagos', lat: 6.51040493048226,  lng: 3.360968423599629}, 
 
-    {name: 'Bokku! Mart, Owodunni Str, Iwaya, Yaba', address: '20 Owodunni St, Iwaya, Lagos 101245, Lagos', lat: 6 ,  lng: 3 }, 
+    {name: 'Bokku! Mart, Owodunni Str, Iwaya, Yaba', address: '20 Owodunni St, Iwaya, Lagos 101245, Lagos', lat: 6.505586753209574,  lng: 3.390940611105772 }, 
 
     {name: 'Bokku! Mart Shyllon Street', address: '69 Shyllon St, Onipanu, Lagos 102215, Lagos', lat:6.539606199283818, lng: 3.3654778235996288 }, 
 
@@ -303,9 +306,13 @@ searchInput.addEventListener('input', () => {
                     const storeList = document.getElementById('store-list'); // Assuming store list has an ID
                     const storeElements = [...storeList.children];
                 
+                    // Clear previous highlights
+                    storeElements.forEach(child => child.classList.remove('searched-store'));
+                
+                    // Find the matching store element
                     const matchingElement = storeElements.find(child => child.textContent.includes(store.name));
                     if (matchingElement) {
-                        matchingElement.classList.add('searched-store'); // to add a class for highlighting, optional
+                        matchingElement.classList.add('searched-store'); // Add a class for highlighting
                         storeList.insertBefore(matchingElement, storeList.firstChild);
                     }
                 });
