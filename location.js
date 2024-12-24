@@ -23,7 +23,7 @@ const stores = [
 
     {name: 'Bokku! Mart Ijesha Rd, Surulere', address: '84 Ijesha Rd, Surulere, Lagos 102215, Lagos', lat: 6.506255628569018, lng: 3.333825129422417}, 
      
-    {name: 'Bokku! Mart Alh. Kudirat Adenekan St, Isolo', address: '48A Alh. Kudirat Adenekan St, Isolo, Oshodi/Isolo 102214, Lagos', lat: 6.540767864032124, lng: 3.3172191410835254},  
+    {name: 'Bokku! Mart Alh. Kudirat St, Isolo', address: '48A Alh. Kudirat Adenekan St, Isolo, Oshodi/Isolo 102214, Lagos', lat: 6.540767864032124, lng: 3.3172191410835254},  
 
     {name: 'Bokku! Mart Liasu Road, Ikotun', address: '27 Liasu Rd, Alimosho, Ikeja 102213, Lagos', lat: 6.556402, lng: 3.280159},
 
@@ -31,13 +31,13 @@ const stores = [
 
     {name: 'Bokku! Mart Idi-Araba, Mushin', address: '111 Ishaga Rd, Idi-Araba, Lagos 102215, Lagos', lat: 6.519742696617311,  lng: 3.34614655887471},
     
-    { name: 'Ijegun road, via adekunle odunilami street', address: '134,Ijegun road, via adekunle odunilami street. Ti-oluwani bus stop ijegun, road, Ikotun, Lagos 300001, Nigeria', lat:  6.521285,lng: 3.257346 },
+    { name: 'Ijegun Road, Adekunle odunilami St', address: '134,Ijegun road, via adekunle odunilami street. Ti-oluwani bus stop ijegun, road, Ikotun, Lagos 300001, Nigeria', lat:  6.521285,lng: 3.257346 },
     
     { name: 'Bokku! Mart Ijegun - Ikotun Rd, Ijegun', address: '268 Ijegun - Ikotun Rd, Ijegun, Lagos 102213, Lagos, Nigeria', lat: 6.526274, lng:  3.258049 },
 
     { name: 'Bokku! Mart Ago Palace', address: '120 Ago Palace Way, Ilasamaja, Okota 102214, Lagos', lat: 6.503654099072547, lng:  3.3042997507034375}, 
 
-    {name: 'Bokku! Mart Apapa Road, Ebute-metta', address: '135 Apapa Rd, Ebute Metta, Lagos Mainland 101245, Lagos', lat: 6.485143632059542,  lng: 3.372765478445745}, 
+    {name: 'Bokku! Mart Apapa, Ebute-metta', address: '135 Apapa Rd, Ebute Metta, Lagos Mainland 101245, Lagos', lat: 6.485143632059542,  lng: 3.372765478445745}, 
 
     {name: 'Bokku Mart Oguntolu St, Somolu', address: '66 Oguntolu St, Somolu, Lagos 102216, Lagos', lat: 6.54072341062299,  lng: 3.3691998483291847},
 
@@ -247,6 +247,7 @@ infoWindow.open(map, marker);
     });
 }
 
+//search function
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
 const searchIcon = document.getElementById('search-icon');
@@ -271,13 +272,48 @@ searchInput.addEventListener('input', () => {
                 const resultItem = document.createElement('div');
                 resultItem.textContent = store.name;
                 resultItem.addEventListener('click', () => {
+                    // Center the map and zoom into the selected location
                     map.setCenter({ lat: store.lat, lng: store.lng });
                     map.setZoom(15);
+                
+                    // Fill the search input with the clicked result
+                    searchInput.value = store.name;
+                
+                    // Hide the search results and reset icons
+                    searchResults.classList.remove('active');
+                    searchIcon.style.display = 'inline-block';
+                    exitIcon.style.display = 'none';
+                
+                    // Create and display the InfoWindow
+                    const infoWindow = new google.maps.InfoWindow({
+                        content: `<div style="font-family: Montserrat, sans-serif; line-height: 0.81; width: 250px; height: 80px;">
+                            <h3 style="margin: 0; font-size: 14px; font-weight: bold;">${store.name}</h3>
+                            <p style="margin: 7px 0; color: #666; font-size: 10px;">${store.address}</p>
+                            <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
+                            style="padding: 6px 10px; background-color: #fff; color: #000; border: 1px solid #000; border-radius: 15px; cursor: pointer; font-size: 10px; margin-bottom: 3px;">
+                            Get Directions
+                            </button>
+                        </div>`
+                    });
+                
+                    // Set the InfoWindow on the map at the selected store's location
+                    infoWindow.open(map, new google.maps.Marker({ position: { lat: store.lat, lng: store.lng }, map: map }));
+                
+                    // Move the selected store to the top of the store list
+                    const storeList = document.getElementById('store-list'); // Assuming store list has an ID
+                    const storeElements = [...storeList.children];
+                
+                    const matchingElement = storeElements.find(child => child.textContent.includes(store.name));
+                    if (matchingElement) {
+                        matchingElement.classList.add('searched-store'); // to add a class for highlighting, optional
+                        storeList.insertBefore(matchingElement, storeList.firstChild);
+                    }
                 });
+                
                 searchResults.appendChild(resultItem);
             });
         } else {
-            searchResults.innerHTML = '<div>No results found</div>';
+            searchResults.innerHTML = '<div>No results found!</div>';
         }
     } else {
         searchResults.classList.remove('active');
