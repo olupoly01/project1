@@ -13,7 +13,7 @@ const map = new google.maps.Map(document.getElementById('map'), {
 });
 
 const stores = [
-    {name: 'Bokku! Mart Old Ogba Rd', address: '100 Ogba Rd, Ijaiye, Lagos 102212, Lagos', lat:6, lng: 3.2},
+    {name: 'Bokku! Mart Old Ogba Rd', address: '100 Ogba Rd, Ijaiye, Lagos 102212, Lagos', lat:6.6177741, lng: 3.3328734},
 
     {name: 'Bokku! Mart Egbeda-idimu', address: '95 Idimu Rd, Idimu, Lagos 102213, Lagos', lat:6.583044596786429, lng: 3.283498176417533},
 
