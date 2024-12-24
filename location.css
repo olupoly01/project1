@@ -43,7 +43,7 @@ body {
 	justify-content: space-between;
 	padding: 0 2rem;
 	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-	z-index: 1100;
+	z-index: 2000;
 	transition: all 0.3s ease-in-out;
 }
 
@@ -81,6 +81,7 @@ body {
 .nav-links a {
 	color: var(--accent-color);
 	font-size: 1rem;
+	text-transform: uppercase;
 	font-weight: 500;
 	position: relative;
 	transition: color 0.3s ease-in-out;
@@ -113,28 +114,41 @@ body {
 }
 
 .nav-links {
-	position: absolute;
-	top: 70px;
+	position: fixed;
+	top: 0;
 	left: 0;
 	width: 100%;
-	background: rgba(0, 0, 0, 0.568);
-	backdrop-filter: blur(10px);
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.95); /* Fullscreen dark background */
+	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	gap: 2rem;
-	padding: 2rem 0;
-	transform: translateY(-100%); /* Hide menu completely off-screen */
-	visibility: hidden; /* Ensure it doesn't interfere when hidden */
-	opacity: 0; /* Fully transparent when hidden */
-	transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
-	z-index: 1000; /* Place it above other elements but below the hamburger */
-}
-
-.nav-links.open {
-	transform: translateY(0); /* Slide down to show the menu */
-	visibility: visible; /* Make menu interactable */
-	opacity: 1; /* Fully visible */
-}
+	transform: translateY(-100%);
+	visibility: hidden;
+	opacity: 0;
+	transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      }
+    
+      .nav-links.open {
+	transform: translateY(0);
+	visibility: visible;
+	opacity: 1;
+      }
+    
+      .nav-links a {
+	color: #fff;
+	font-size: 1.8rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition: color 0.3s ease;
+      }
+    
+      .nav-links a:hover {
+	color: var(--accent-color); 
+      }
 }
 /* Search Bar Styling */
 .search-container {
@@ -144,7 +158,7 @@ body {
 	position: absolute;
 	width: 80%;
 	top: 12%;
-	z-index: 14000;
+	z-index: 1400;
     }
     
     .search-bar {

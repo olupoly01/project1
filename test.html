@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title> bokku! - Best Discount Grocery Store</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <style>
+        * {
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	text-decoration:none;
+	list-style:none;
+	scroll-behavior:smooth;
+}
+:root {
+	--primary-color:#000d81;
+	--accent-color:#f5eb00;
+	--text-light:#ffffff;
+	--text-dark:#000000;
+	--background-color:#e2e2e2;
+	--background-dark:#0a0a23;
+	--background-overlay:rgba(0,0,0,0.6);
+}
+body {
+	font-family:'Montserrat',sans-serif;
+	background-color:var(--background-dark);
+	color:var(--text-dark);
+	text-decoration:none;
+	list-style:none;
+}
+/* Navbar Styling */
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 70px;
+	background:rgba(0,13,129,0.767);
+	backdrop-filter: blur(8px);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 2rem;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar.scrolled {
+	background: rgba(0, 0, 0, 0.9);
+	height: 60px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo Styling */
+.logo a {
+	color: var(--accent-color);
+	font-size: 1.8rem;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+/* Hamburger Menu */
+.hamburger {
+	display: none;
+	font-size: 1.8rem;
+	color: var(--accent-color);
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+/* Navigation Links */
+.nav-links {
+	display: flex;
+	gap: 1.5rem;
+	list-style: none;
+	transition: all 0.3s ease-in-out;
+}
+
+.nav-links a {
+	color: var(--accent-color);
+	font-size: 1rem;
+	font-weight: 500;
+	position: relative;
+	transition: color 0.3s ease-in-out;
+}
+
+.nav-links a::after {
+	content: "";
+	position: absolute;
+	bottom: -3px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background-color: var(--accent-color);
+	transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+	width: 100%;
+}
+
+.nav-links a:hover {
+	color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95); /* Fullscreen dark background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateY(-100%);
+    visibility: hidden;
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .nav-links .logo {
+    font-size: 2.5rem; /* Larger than links */
+    font-weight: bold;
+    color: var(--accent-color); /* Accent color */
+    margin-bottom: 2rem; /* Space below the logo */
+  }
+
+  .nav-links a {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: orange; /* Highlight color on hover */
+  }
+
+  .nav-links .cta-button {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    border: 2px solid orange;
+    color: orange;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-links .cta-button:hover {
+    background: orange;
+    color: #000;
+  }
+
+  .hamburger {
+    display: block;
+    z-index: 1100;
+    color: orange;
+    font-size: 1.8rem;
+  }
+}
+
+      #welcome {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	text-align: center;
+	background: linear-gradient(
+	  135deg,
+	  var(--primary-color),
+	  var(--background-dark)
+	);
+	color: var(--text-light);
+	position: relative;
+	padding: 4rem 2rem;
+	overflow: hidden;
+      }
+      
+      #welcome h1 {
+	font-size: 4rem;
+	font-weight: 800;
+	color: var(--text-light);
+	animation: fadeIn 1s ease-in-out;
+      }
+      
+      #welcome h1 span {
+	color: var(--accent-color);
+      }
+      
+      #welcome p {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+	color: var(--text-light);
+	max-width: 600px;
+	animation: fadeIn 1.5s ease-in-out;
+      }
+      
+      .cta-buttons a {
+	display: inline-block;
+	background: var(--primary-color);
+	color: var(--text-light);
+	padding: 1rem 2rem;
+	font-size: 1.2rem;
+	border-radius: 40px;
+	text-decoration: none;
+	margin: 1rem;
+	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .cta-buttons a.accent-btn {
+	background: var(--accent-color);
+	color: var(--text-dark);
+      }
+      
+      .cta-buttons a:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+      }
+      
+      /* Scroll down animation */
+      .scroll-down {
+	position: absolute;
+	bottom: 2rem;
+	text-align: center;
+      }
+      
+      .scroll-down a {
+	text-decoration: none;
+	color: var(--text-light);
+      }
+      
+      .scroll-down span {
+	display: block;
+	width: 30px;
+	height: 30px;
+	border: 2px solid var(--text-light);
+	border-radius: 50%;
+	margin: 0 auto;
+	animation: bounce 1.5s infinite;
+      }
+      
+      .scroll-down p {
+	font-size: 1rem;
+	margin-top: 0.5rem;
+      }
+      
+      /* Keyframes for animations */
+      @keyframes fadeIn {
+	from {
+	  opacity: 0;
+	  transform: translateY(30px);
+	}
+	to {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+      }
+      
+      @keyframes bounce {
+	0%,
+	20%,
+	50%,
+	80%,
+	100% {
+	  transform: translateY(0);
+	}
+	40% {
+	  transform: translateY(-15px);
+	}
+	60% {
+	  transform: translateY(-8px);
+	}
+      }
+      @media (max-width: 768px) {
+	#welcome h1{
+		font-size: 3.5rem;
+	}
+	#welcome p {
+		font-size: 1.3rem;
+		margin-top: 1rem;
+	}
+	.cta-buttons a{
+		padding: 1rem 2rem;
+		font-size: 1.1rem;
+		margin: 0.7rem;
+	}
+      }
+      </style>
+   </head>
+   
+   <body>
+      <nav class="navbar">
+         <div class="logo"><a href="index.html"> bokku! </a></div>
+         <div class="hamburger"> <i class="fas fa-bars"> </i></div>
+         <ul class="nav-links">
+            <li>  <a href="about.html"> About</a> </li>
+            <li ><a href="products.html" >Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="location.html">Find us</a></li>
+         </ul>
+      </nav>
+
+      <section id="welcome">
+         <div class="container">
+           <h1>
+             Welcome to <span>bokku!</span>
+           </h1>
+           <p>
+             Your ultimate stop for daily essentials and the freshest, most delicious bread in Nigeria. Let's make your everyday extraordinary!
+           </p>
+       
+           <div class="cta-buttons">
+             <a href="products.html">Shop Now</a>
+             <a href="location.html" class="accent-btn">Taste Our Bread</a>
+           </div>
+         </div>
+       
+         <!-- Scroll down button -->
+         <div class="scroll-down">
+           <a href="#hero">
+             <span></span>
+             <p>Fresh arrivals</p>
+           </a>
+         </div>
+       </section>
+       <script >
+        document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+
+  // Toggle navigation menu on hamburger click
+  hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("open"); // Correct class name
+  });
+
+  // Close navigation menu when clicking outside
+  document.addEventListener("click", (event) => {
+      if (
+          !navLinks.contains(event.target) &&
+          !hamburger.contains(event.target)
+      ) {
+          navLinks.classList.remove("open"); // Correct class name
+      }
+  });
+});
+       </script>
+    </body>
+ </html>
