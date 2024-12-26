@@ -226,7 +226,6 @@ body {
 	width: 100%;
 	height: 100%;
 	object-fit: cover; /* Ensures the image or video maintains its aspect ratio */
-	object-position: center; /* Centers the image or video in the container */
 	filter: brightness(0.7); /* Adjust brightness for text visibility */
       }
       
