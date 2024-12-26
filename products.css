@@ -132,7 +132,7 @@ body {
       }
     
       .nav-links a {
-	color: #fff;
+	color: var(--text-light);
 	font-size: 1.8rem;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -147,8 +147,17 @@ body {
 h1 {
   text-align: center;
   margin-top: 80px;
-  color: #002879;
+  color: var(--primary-color);
 }
+
+.results-counter {
+	text-align: left;
+	margin: 10px;
+	font-size: 16px;
+	color: #333;
+	font-weight: bold;
+      }
+      
 
 /* Product Grid */
 .product-container {
@@ -236,7 +245,7 @@ h1 {
   background: var(--product-background);
   border-radius: 10px;
   width: 90%;
-  max-width: 500px;
+  max-width: 480px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
   text-align: center;
@@ -282,6 +291,31 @@ h1 {
   from { transform: scale(0.8); }
   to { transform: scale(1); }
 }
+.pagination-container {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0;
+      }
+      
+      .page-btn {
+	margin: 0 5px;
+	padding: 10px 15px;
+	border: 1px solid #ccc;
+	background-color: #f9f9f9;
+	cursor: pointer;
+      }
+      
+      .page-btn.active {
+	background-color: #007bff;
+	color: white;
+	border-color: #007bff;
+      }
+      
+      .page-btn:hover {
+	background-color: #0056b3;
+	color: white;
+      }
+      
 /* Footer General Styles */
 .footer {
 	background-color: #f4f4f4;

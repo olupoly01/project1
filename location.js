@@ -172,6 +172,7 @@ const storeList = document.getElementById('store-list');
 const infoWindows = [];
 const markers = [];
 
+// Utility Function: Format Store Info
 function formatStoreInfo(store, distance) {
 const currentTime = new Date();
 const openTime = 9;
@@ -205,6 +206,7 @@ function addStoreMarkers() {
             title: store.name,
             icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
         });
+        markers.push(marker);
 
         const infoWindow = new google.maps.InfoWindow({
             content: `<div style="font-family: Montserrat, sans-serif; line-height: 0.81; width: 250px; height: 80px;">
