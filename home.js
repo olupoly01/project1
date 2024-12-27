@@ -25,103 +25,126 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-});
+  const slidesData = [
+    {
+      title: "Fresh in!",
+      subtitle: "Go-Vita!",
+      description: "Powder chocolate drink!",
+      price: "₦2,200",
+      image: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4e24a336629257.5722f196e7ba8.jpg",
+    },
+    {
+      title: "Fresh Arrival!",
+      subtitle: "Mealmate Poundo yam",
+      description: "Enjoy sweet and healthy poundo yam flour!",
+      price: "₦2,400",
+      image: "https://costa-verde.com/wp-content/uploads/2020/04/71-cabazes-de-fruta-e-legumes-1-1024x549.jpg",
+    },
+    {
+      title: "New in!",
+      subtitle: "Reos Handwash",
+      description: "Soft on hands, tough on gems!",
+      price: "₦900",
+      image: "https://i.pinimg.com/1200x/e8/98/e0/e898e0478993e98432a56148bcbcf616.jpg",
+    },
+  ];
 
-const slidesData = [
-  {
-    title: "Fresh in!",
-    subtitle: "Go-Vita!",
-    description: "Powder chocolate drink!",
-    price: "₦2,200",
-    image: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4e24a336629257.5722f196e7ba8.jpg",
-  },
-  {
-    title: "Fresh Arrival!",
-    subtitle: "Mealmate Poundo yam",
-    description: "Enjoy sweet and healthy poundo yam flour!",
-    price: "₦2,400",
-    image:"https://costa-verde.com/wp-content/uploads/2020/04/71-cabazes-de-fruta-e-legumes-1-1024x549.jpg",
-  },
-  {
-    title: "New in!",
-    subtitle: "Reos Handwash",
-    description: "Soft on hands, tough on gems!",
-    price: "₦900",
-    image: "https://i.pinimg.com/1200x/e8/98/e0/e898e0478993e98432a56148bcbcf616.jpg",
-  },
-];
+  const slidesContainer = document.querySelector('.slides-container');
+  const dotsContainer = document.querySelector('.dots-container');
 
-const slidesContainer = document.querySelector('.slides-container');
-const dotsContainer = document.querySelector('.dots-container');
+  let currentSlide = 0;
+  let startX = 0;
+  let isDragging = false;
+  let currentTranslate = 0;
+  let previousTranslate = -100; // Start at the first slide
+  const slideWidth = 100; // Each slide takes 100% width
 
-let currentSlide = 0;
+  // Dynamically create slides and dots
+  slidesData.forEach((slide, index) => {
+    const slideDiv = document.createElement('div');
+    slideDiv.classList.add('slide');
+    slideDiv.style.backgroundImage = `url(${slide.image})`;
+    slideDiv.innerHTML = `
+      <div class="hero-content">
+        <h4>${slide.title}</h4>
+        <h1>${slide.subtitle}</h1>
+        <p>${slide.description}</p>
+        <h2><strong>${slide.price}</strong></h2>
+        <br>
+        <a href="location.html" class="btn">Buy Now</a>
+      </div>
+    `;
+    slidesContainer.appendChild(slideDiv);
 
-// Create slides and dots dynamically
-slidesData.forEach((slide, index) => {
-  const slideDiv = document.createElement('div');
-  slideDiv.classList.add('slide');
-  slideDiv.style.backgroundImage = `url(${slide.image})`;
-  slideDiv.innerHTML = `
-    <div class="hero-content">
-      <h4>${slide.title}</h4>
-      <h1>${slide.subtitle}</h1>
-      <p>${slide.description}</p>
-      <h2><strong>${slide.price}</strong></h2>
-      <br>
-      <a href="location.html" class="btn">Buy Now</a>
-    </div>
-  `;
-  slidesContainer.appendChild(slideDiv);
-
-  const dot = document.createElement('span');
-  dot.classList.add('dot');
-  if (index === 0) dot.classList.add('active');
-  dot.addEventListener('click', () => setSlide(index));
-  dotsContainer.appendChild(dot);
-});
-
-// Clone first and last slides for seamless looping
-const firstClone = slidesContainer.firstElementChild.cloneNode(true);
-const lastClone = slidesContainer.lastElementChild.cloneNode(true);
-slidesContainer.appendChild(firstClone);
-slidesContainer.insertBefore(lastClone, slidesContainer.firstElementChild);
-
-// Update slides position
-function updateSlides() {
-  const dots = document.querySelectorAll('.dot');
-  slidesContainer.style.transform = `translateX(-${(currentSlide + 1) * 100}%)`;
-  dots.forEach((dot, index) => {
-    dot.classList.toggle('active', index === currentSlide);
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => setSlide(index));
+    dotsContainer.appendChild(dot);
   });
-}
 
-// Set specific slide
-function setSlide(index) {
-  currentSlide = index;
-  updateSlides();
-}
+  // Clone first and last slides for seamless looping
+  const firstClone = slidesContainer.firstElementChild.cloneNode(true);
+  const lastClone = slidesContainer.lastElementChild.cloneNode(true);
+  slidesContainer.appendChild(firstClone);
+  slidesContainer.insertBefore(lastClone, slidesContainer.firstElementChild);
 
-// Next slide logic
-function nextSlide() {
-  currentSlide++;
-  if (currentSlide >= slidesData.length) {
-    setTimeout(() => {
-      slidesContainer.style.transition = 'none';
-      currentSlide = 0;
-      updateSlides();   
-    }, 500);
-  } else {
+  // Update slide position
+  function updateSlides() {
     slidesContainer.style.transition = 'transform 0.5s ease-in-out';
+    slidesContainer.style.transform = `translateX(-${(currentSlide + 1) * slideWidth}%)`;
+
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
   }
-  updateSlides();
-}
 
-// Auto-slide every 6 seconds
-setInterval(nextSlide, 6000);
+  // Set specific slide
+  function setSlide(index) {
+    currentSlide = index;
+    updateSlides();
+  }
 
-// Initialize
-slidesContainer.style.transform = `translateX(-100%)`;
+  // Touch event handlers
+  slidesContainer.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    slidesContainer.style.transition = 'none';
+  });
 
+  slidesContainer.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const deltaX = currentX - startX;
+    currentTranslate = previousTranslate + (deltaX / window.innerWidth) * 100;
+    slidesContainer.style.transform = `translateX(${currentTranslate}%)`;
+  });
+
+  slidesContainer.addEventListener('touchend', () => {
+    isDragging = false;
+    const movedBy = currentTranslate - previousTranslate;
+
+    // Determine the direction of the swipe
+    if (movedBy < -20 && currentSlide < slidesData.length - 1) {
+      currentSlide++;
+    } else if (movedBy > 20 && currentSlide > 0) {
+      currentSlide--;
+    }
+
+    previousTranslate = -currentSlide * slideWidth;
+    updateSlides();
+  });
+
+  // Initialize slide position
+  slidesContainer.style.transform = `translateX(-${slideWidth}%)`;
+
+  // Auto-slide every 6 seconds
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slidesData.length;
+    updateSlides();
+  }, 6000);
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   const testimonials = [
