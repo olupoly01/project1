@@ -56,9 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   let currentSlide = 0;
+  let isDragging = false;
   let startX = 0;
   let currentX = 0;
-  let isDragging = false;
 
   // Populate slides and dots
   slidesData.forEach((slide, index) => {
@@ -109,12 +109,22 @@ document.addEventListener("DOMContentLoaded", () => {
       slidesContainer.style.transition = "none";
       currentSlide = 0;
       slidesContainer.style.transform = `translateX(-${(currentSlide + 1) * 100}%)`;
+      updateDots(); // Update dots after resetting position
     } else if (currentSlide === -1) {
       slidesContainer.style.transition = "none";
       currentSlide = slidesCount - 1;
       slidesContainer.style.transform = `translateX(-${(currentSlide + 1) * 100}%)`;
+      updateDots(); // Update dots after resetting position
     }
   });
+
+  // Update dots manually
+  function updateDots() {
+    const dots = document.querySelectorAll(".dot");
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentSlide);
+    });
+  }
 
   // Go to specific slide
   function goToSlide(index) {
