@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slidesContainer = document.querySelector(".slides-container");
+  const dotsContainer = document.querySelector(".dots-container");
+
   const slidesData = [
     {
       title: "Fresh in!",
@@ -43,26 +49,21 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       title: "New in!",
       subtitle: "Reos Handwash",
-      description: "Soft on hands, tough on gems!",
+      description: "Soft on hands, tough on germs!",
       price: "₦900",
       image: "https://i.pinimg.com/1200x/e8/98/e0/e898e0478993e98432a56148bcbcf616.jpg",
     },
   ];
 
-  const slidesContainer = document.querySelector('.slides-container');
-  const dotsContainer = document.querySelector('.dots-container');
-
   let currentSlide = 0;
   let startX = 0;
+  let currentX = 0;
   let isDragging = false;
-  let currentTranslate = 0;
-  let previousTranslate = -100; // Start at the first slide
-  const slideWidth = 100; // Each slide takes 100% width
 
-  // Dynamically create slides and dots
+  // Populate slides and dots
   slidesData.forEach((slide, index) => {
-    const slideDiv = document.createElement('div');
-    slideDiv.classList.add('slide');
+    const slideDiv = document.createElement("div");
+    slideDiv.classList.add("slide");
     slideDiv.style.backgroundImage = `url(${slide.image})`;
     slideDiv.innerHTML = `
       <div class="hero-content">
@@ -76,10 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     slidesContainer.appendChild(slideDiv);
 
-    const dot = document.createElement('span');
-    dot.classList.add('dot');
-    if (index === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => setSlide(index));
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (index === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => goToSlide(index));
     dotsContainer.appendChild(dot);
   });
 
@@ -89,61 +90,58 @@ document.addEventListener("DOMContentLoaded", () => {
   slidesContainer.appendChild(firstClone);
   slidesContainer.insertBefore(lastClone, slidesContainer.firstElementChild);
 
-  // Update slide position
+  // Update slides position
   function updateSlides() {
-    slidesContainer.style.transition = 'transform 0.5s ease-in-out';
-    slidesContainer.style.transform = `translateX(-${(currentSlide + 1) * slideWidth}%)`;
+    const dots = document.querySelectorAll(".dot");
+    slidesContainer.style.transition = "transform 0.5s ease-in-out";
+    slidesContainer.style.transform = `translateX(-${(currentSlide + 1) * 100}%)`;
 
-    const dots = document.querySelectorAll('.dot');
     dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentSlide);
+      dot.classList.toggle("active", index === currentSlide);
     });
   }
 
-  // Set specific slide
-  function setSlide(index) {
+  // Go to specific slide
+  function goToSlide(index) {
     currentSlide = index;
     updateSlides();
   }
 
-  // Touch event handlers
-  slidesContainer.addEventListener('touchstart', (e) => {
+  // Handle swiping logic
+  slidesContainer.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
     isDragging = true;
-    slidesContainer.style.transition = 'none';
+    slidesContainer.style.transition = "none";
   });
 
-  slidesContainer.addEventListener('touchmove', (e) => {
+  slidesContainer.addEventListener("touchmove", (e) => {
     if (!isDragging) return;
-    const currentX = e.touches[0].clientX;
-    const deltaX = currentX - startX;
-    currentTranslate = previousTranslate + (deltaX / window.innerWidth) * 100;
-    slidesContainer.style.transform = `translateX(${currentTranslate}%)`;
+    currentX = e.touches[0].clientX - startX;
+    slidesContainer.style.transform = `translateX(calc(-${(currentSlide + 1) * 100}% + ${currentX}px))`;
   });
 
-  slidesContainer.addEventListener('touchend', () => {
+  slidesContainer.addEventListener("touchend", () => {
     isDragging = false;
-    const movedBy = currentTranslate - previousTranslate;
+    const movedBy = currentX;
 
-    // Determine the direction of the swipe
-    if (movedBy < -20 && currentSlide < slidesData.length - 1) {
+    if (movedBy < -50 && currentSlide < slidesData.length - 1) {
       currentSlide++;
-    } else if (movedBy > 20 && currentSlide > 0) {
+    } else if (movedBy > 50 && currentSlide > 0) {
       currentSlide--;
     }
 
-    previousTranslate = -currentSlide * slideWidth;
+    currentX = 0; // Reset currentX
     updateSlides();
   });
-
-  // Initialize slide position
-  slidesContainer.style.transform = `translateX(-${slideWidth}%)`;
 
   // Auto-slide every 6 seconds
   setInterval(() => {
     currentSlide = (currentSlide + 1) % slidesData.length;
     updateSlides();
   }, 6000);
+
+  // Initialize slides
+  slidesContainer.style.transform = `translateX(-100%)`;
 });
 
 document.addEventListener("DOMContentLoaded", () => {
