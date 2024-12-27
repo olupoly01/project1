@@ -205,6 +205,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let slideWidth = 0;
   let autoSlideInterval;
 
+  // Touch event variables
+  let startX = 0;
+  let currentX = 0;
+  let isDragging = false;
+
   // Render slides
   function renderSlides() {
     testimonials.forEach((testimonial) => {
@@ -248,14 +253,64 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Move to the previous slide
+  function moveToPreviousSlide() {
+    currentSlide--;
+    slidesContainer.style.transition = "transform 0.5s ease-in-out";
+    slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
+
+    slidesContainer.addEventListener("transitionend", () => {
+      if (currentSlide < 0) {
+        slidesContainer.style.transition = "none";
+        currentSlide = testimonials.length - 1;
+        slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
+      }
+    });
+  }
+
   // Start auto-sliding
   function startAutoSlide() {
     autoSlideInterval = setInterval(moveToNextSlide, 7000);
   }
 
-  // Stop auto-sliding on interaction
+  // Stop auto-sliding
   function stopAutoSlide() {
     clearInterval(autoSlideInterval);
+  }
+
+  // Handle touch start
+  function handleTouchStart(event) {
+    startX = event.touches[0].clientX;
+    isDragging = true;
+    stopAutoSlide();
+  }
+
+  // Handle touch move
+  function handleTouchMove(event) {
+    if (!isDragging) return;
+    currentX = event.touches[0].clientX;
+    const deltaX = currentX - startX;
+
+    slidesContainer.style.transition = "none";
+    slidesContainer.style.transform = `translateX(${-slideWidth * (currentSlide + 1) + deltaX}px)`;
+  }
+
+  // Handle touch end
+  function handleTouchEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    const deltaX = currentX - startX;
+
+    if (deltaX > 50) {
+      moveToPreviousSlide();
+    } else if (deltaX < -50) {
+      moveToNextSlide();
+    } else {
+      slidesContainer.style.transition = "transform 0.5s ease-in-out";
+      slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
+    }
+
+    startAutoSlide();
   }
 
   // Initialize slider
@@ -266,7 +321,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle window resize
   window.addEventListener("resize", updateSlideWidth);
 
-  // Pause sliding on hover
-  slidesContainer.addEventListener("mouseenter", stopAutoSlide);
-  slidesContainer.addEventListener("mouseleave", startAutoSlide);
+  // Add touch event listeners
+  slidesContainer.addEventListener("touchstart", handleTouchStart);
+  slidesContainer.addEventListener("touchmove", handleTouchMove);
+  slidesContainer.addEventListener("touchend", handleTouchEnd);
 });
+
