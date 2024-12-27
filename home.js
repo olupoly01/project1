@@ -203,12 +203,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentSlide = 0;
   let slideWidth = 0;
-  let autoSlideInterval;
-
-  // Touch event variables
+  let isDragging = false;
   let startX = 0;
   let currentX = 0;
-  let isDragging = false;
+  let autoSlideInterval;
 
   // Render slides
   function renderSlides() {
@@ -216,9 +214,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const slide = document.createElement("div");
       slide.classList.add("testimonial-slide");
       slide.innerHTML = `
-        <img src="${testimonial.image}" alt="${testimonial.name}">
-        <h3>${testimonial.name}</h3>
-        <p>${testimonial.feedback}</p>
+        <div class="testimonial-content">
+          <img src="${testimonial.image}" alt="${testimonial.name}" class="testimonial-image">
+          <h3 class="testimonial-name">${testimonial.name}</h3>
+          <p class="testimonial-feedback">${testimonial.feedback}</p>
+        </div>
       `;
       slidesContainer.appendChild(slide);
     });
@@ -232,35 +232,34 @@ document.addEventListener("DOMContentLoaded", () => {
     slidesContainer.insertBefore(lastClone, slides[0]);
   }
 
-  // Update slide width and position
+  // Set slide width and update container
   function updateSlideWidth() {
-    slideWidth = document.querySelector(".testimonial-slide").offsetWidth;
+    const slides = document.querySelectorAll(".testimonial-slide");
+    slideWidth = slides[0].offsetWidth;
+
+    slides.forEach((slide) => {
+      slide.style.width = `${slideWidth}px`;
+    });
+
     slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
   }
 
-  // Move to the next slide
-  function moveToNextSlide() {
-    currentSlide++;
+  // Move to a specific slide
+  function moveToSlide(slideIndex) {
+    currentSlide = slideIndex;
     slidesContainer.style.transition = "transform 0.5s ease-in-out";
     slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
+  }
 
+  // Handle seamless looping
+  function handleLoop() {
+    const slides = document.querySelectorAll(".testimonial-slide");
     slidesContainer.addEventListener("transitionend", () => {
       if (currentSlide >= testimonials.length) {
         slidesContainer.style.transition = "none";
         currentSlide = 0;
-        slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
-      }
-    });
-  }
-
-  // Move to the previous slide
-  function moveToPreviousSlide() {
-    currentSlide--;
-    slidesContainer.style.transition = "transform 0.5s ease-in-out";
-    slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
-
-    slidesContainer.addEventListener("transitionend", () => {
-      if (currentSlide < 0) {
+        slidesContainer.style.transform = `translateX(-${slideWidth}px)`;
+      } else if (currentSlide < 0) {
         slidesContainer.style.transition = "none";
         currentSlide = testimonials.length - 1;
         slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
@@ -268,62 +267,62 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Start auto-sliding
-  function startAutoSlide() {
-    autoSlideInterval = setInterval(moveToNextSlide, 7000);
-  }
-
-  // Stop auto-sliding
-  function stopAutoSlide() {
-    clearInterval(autoSlideInterval);
-  }
-
-  // Handle touch start
+  // Handle touch events for swiping
   function handleTouchStart(event) {
     startX = event.touches[0].clientX;
     isDragging = true;
-    stopAutoSlide();
+    slidesContainer.style.transition = "none";
+    clearInterval(autoSlideInterval); // Pause auto-slide during manual interaction
   }
 
-  // Handle touch move
   function handleTouchMove(event) {
     if (!isDragging) return;
     currentX = event.touches[0].clientX;
     const deltaX = currentX - startX;
 
-    slidesContainer.style.transition = "none";
-    slidesContainer.style.transform = `translateX(${-slideWidth * (currentSlide + 1) + deltaX}px)`;
+    slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1) + deltaX}px)`;
   }
 
-  // Handle touch end
   function handleTouchEnd() {
     if (!isDragging) return;
     isDragging = false;
     const deltaX = currentX - startX;
 
     if (deltaX > 50) {
-      moveToPreviousSlide();
+      moveToSlide(currentSlide - 1);
     } else if (deltaX < -50) {
-      moveToNextSlide();
+      moveToSlide(currentSlide + 1);
     } else {
-      slidesContainer.style.transition = "transform 0.5s ease-in-out";
-      slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
+      moveToSlide(currentSlide);
     }
+
+    startAutoSlide(); // Resume auto-slide after interaction
+  }
+
+  // Auto-slide logic
+  function autoSlide() {
+    moveToSlide(currentSlide + 1);
+  }
+
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(autoSlide, 5000); // Adjust interval as needed
+  }
+
+  // Initialize slider
+  function initSlider() {
+    renderSlides();
+    updateSlideWidth();
+    handleLoop();
+
+    window.addEventListener("resize", updateSlideWidth);
+
+    slidesContainer.addEventListener("touchstart", handleTouchStart);
+    slidesContainer.addEventListener("touchmove", handleTouchMove);
+    slidesContainer.addEventListener("touchend", handleTouchEnd);
 
     startAutoSlide();
   }
 
-  // Initialize slider
-  renderSlides();
-  updateSlideWidth();
-  startAutoSlide();
-
-  // Handle window resize
-  window.addEventListener("resize", updateSlideWidth);
-
-  // Add touch event listeners
-  slidesContainer.addEventListener("touchstart", handleTouchStart);
-  slidesContainer.addEventListener("touchmove", handleTouchMove);
-  slidesContainer.addEventListener("touchend", handleTouchEnd);
+  initSlider();
 });
 
