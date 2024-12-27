@@ -90,6 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
   slidesContainer.appendChild(firstClone);
   slidesContainer.insertBefore(lastClone, slidesContainer.firstElementChild);
 
+  const slidesCount = slidesData.length;
+
   // Update slides position
   function updateSlides() {
     const dots = document.querySelectorAll(".dot");
@@ -100,6 +102,19 @@ document.addEventListener("DOMContentLoaded", () => {
       dot.classList.toggle("active", index === currentSlide);
     });
   }
+
+  // Handle seamless transition
+  slidesContainer.addEventListener("transitionend", () => {
+    if (currentSlide === slidesCount) {
+      slidesContainer.style.transition = "none";
+      currentSlide = 0;
+      slidesContainer.style.transform = `translateX(-${(currentSlide + 1) * 100}%)`;
+    } else if (currentSlide === -1) {
+      slidesContainer.style.transition = "none";
+      currentSlide = slidesCount - 1;
+      slidesContainer.style.transform = `translateX(-${(currentSlide + 1) * 100}%)`;
+    }
+  });
 
   // Go to specific slide
   function goToSlide(index) {
@@ -124,25 +139,26 @@ document.addEventListener("DOMContentLoaded", () => {
     isDragging = false;
     const movedBy = currentX;
 
-    if (movedBy < -50 && currentSlide < slidesData.length - 1) {
+    if (movedBy < -50) {
       currentSlide++;
-    } else if (movedBy > 50 && currentSlide > 0) {
+    } else if (movedBy > 50) {
       currentSlide--;
     }
 
-    currentX = 0; // Reset currentX
     updateSlides();
+    currentX = 0; // Reset currentX
   });
 
   // Auto-slide every 6 seconds
   setInterval(() => {
-    currentSlide = (currentSlide + 1) % slidesData.length;
+    currentSlide++;
     updateSlides();
   }, 6000);
 
   // Initialize slides
   slidesContainer.style.transform = `translateX(-100%)`;
 });
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const testimonials = [
