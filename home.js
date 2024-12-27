@@ -201,11 +201,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const slidesContainer = document.getElementById("testimonial-slides-container");
 
-  let slideIndex = 0;
-  let slideWidth;
-  let interval;
+  let currentSlide = 0;
+  let slideWidth = 0;
+  let autoSlideInterval;
 
-  // Function to render slides
+  // Render slides
   function renderSlides() {
     testimonials.forEach((testimonial) => {
       const slide = document.createElement("div");
@@ -218,50 +218,55 @@ document.addEventListener("DOMContentLoaded", () => {
       slidesContainer.appendChild(slide);
     });
 
-    // Clone slides for seamless infinite scrolling
+    // Clone slides for seamless looping
     const slides = document.querySelectorAll(".testimonial-slide");
     const firstClone = slides[0].cloneNode(true);
-    const secondClone = slides[1].cloneNode(true);
     const lastClone = slides[slides.length - 1].cloneNode(true);
-    const secondLastClone = slides[slides.length - 2].cloneNode(true);
 
     slidesContainer.appendChild(firstClone);
-    slidesContainer.appendChild(secondClone);
     slidesContainer.insertBefore(lastClone, slides[0]);
-    slidesContainer.insertBefore(secondLastClone, slides[0]);
-
-    slideWidth = slidesContainer.querySelector(".testimonial-slide").offsetWidth;
-    slidesContainer.style.transform = `translateX(-${slideWidth * 2}px)`;
   }
 
-  // Update slide position
-  function moveSlide() {
-    slideIndex++;
+  // Update slide width and position
+  function updateSlideWidth() {
+    slideWidth = document.querySelector(".testimonial-slide").offsetWidth;
+    slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
+  }
+
+  // Move to the next slide
+  function moveToNextSlide() {
+    currentSlide++;
     slidesContainer.style.transition = "transform 0.5s ease-in-out";
-    slidesContainer.style.transform = `translateX(-${slideWidth * (slideIndex + 2)}px)`;
+    slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
 
     slidesContainer.addEventListener("transitionend", () => {
-      const slides = document.querySelectorAll(".testimonial-slide");
-      if (slideIndex >= testimonials.length) {
-        slideIndex = 0;
+      if (currentSlide >= testimonials.length) {
         slidesContainer.style.transition = "none";
-        slidesContainer.style.transform = `translateX(-${slideWidth * 2}px)`;
+        currentSlide = 0;
+        slidesContainer.style.transform = `translateX(-${slideWidth * (currentSlide + 1)}px)`;
       }
     });
   }
 
-  // Start auto-slide
+  // Start auto-sliding
   function startAutoSlide() {
-    interval = setInterval(moveSlide, 7000);
+    autoSlideInterval = setInterval(moveToNextSlide, 7000);
   }
 
-  // Handle resize
-  window.addEventListener("resize", () => {
-    slideWidth = slidesContainer.querySelector(".testimonial-slide").offsetWidth;
-    slidesContainer.style.transform = `translateX(-${slideWidth * (slideIndex + 2)}px)`;
-  });
+  // Stop auto-sliding on interaction
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
 
   // Initialize slider
   renderSlides();
+  updateSlideWidth();
   startAutoSlide();
+
+  // Handle window resize
+  window.addEventListener("resize", updateSlideWidth);
+
+  // Pause sliding on hover
+  slidesContainer.addEventListener("mouseenter", stopAutoSlide);
+  slidesContainer.addEventListener("mouseleave", startAutoSlide);
 });
