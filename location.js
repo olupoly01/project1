@@ -1,4 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const loadingScreen = document.getElementById("loading-screen");
+
+    function hideLoadingScreen() {
+        loadingScreen.style.opacity = 0;
+        setTimeout(() => {
+            loadingScreen.style.display = "none";
+        }, 500);
+    }
+
+    // Wait for the map to load completely
+    google.maps.event.addListenerOnce(map, "tilesloaded", () => {
+        hideLoadingScreen();
+    });
+});
+
+  document.addEventListener("DOMContentLoaded", () => {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
     const icon = hamburger.querySelector("i");
@@ -27,13 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Show loading screen until the map is fully loaded
-const loadingScreen = document.getElementById('loading-screen');
-
-window.onload = () => {
-    loadingScreen.style.display = 'none';
-};
-  
 const map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 6.5244, lng: 3.3792 }, // Lagos, Nigeria
     zoom: 11
