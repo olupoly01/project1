@@ -37,21 +37,21 @@ document.addEventListener("DOMContentLoaded", () => {
       subtitle: "Go-Vita!",
       description: "Powder chocolate drink!",
       price: "₦2,200",
-      image: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4e24a336629257.5722f196e7ba8.jpg",
+      image: "/images/go-vita!.jpg",
     },
     {
       title: "Fresh Arrival!",
       subtitle: "Mealmate Poundo yam",
       description: "Enjoy sweet and healthy poundo yam flour!",
       price: "₦2,400",
-      image: "https://costa-verde.com/wp-content/uploads/2020/04/71-cabazes-de-fruta-e-legumes-1-1024x549.jpg",
+      image: "/images/mealmate.jpg",
     },
     {
       title: "New in!",
       subtitle: "Reos Handwash",
       description: "Soft on hands, tough on germs!",
       price: "₦900",
-      image: "https://i.pinimg.com/1200x/e8/98/e0/e898e0478993e98432a56148bcbcf616.jpg",
+      image: "/images/reos.jpg",
     },
   ];
 
