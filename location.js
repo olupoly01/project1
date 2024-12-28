@@ -26,6 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // Show loading screen until the map is fully loaded
+const loadingScreen = document.getElementById('loading-screen');
+
+window.onload = () => {
+    loadingScreen.style.display = 'none';
+};
   
 const map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 6.5244, lng: 3.3792 }, // Lagos, Nigeria
