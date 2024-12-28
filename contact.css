@@ -213,11 +213,11 @@ a {
 .contact-form h1 {
     font-size: 2rem;
     margin-bottom: 15px;
-    color: var(--primary-color);
+    color: var(--text-dark);
 }
 
 .contact-form h1 span{
-    color: var(--accent-color);
+    color: var(--primary-color);
 }
 
 .contact-form p {
