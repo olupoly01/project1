@@ -256,7 +256,7 @@ body {
 	height:100%;
 }
 .slide {
-	flex:1 0 100%;
+	flex:0 0 100%;
 	height:100%;
 	background-size:cover;
 	background-position:center;
