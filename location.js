@@ -437,11 +437,12 @@ function findNearestStore() {
             });
 
             if (nearestStore) {
-                alert(`Nearest store: ${nearestStore.name}`);
-
-                // Highlight the nearest store in the list
-                [...storeList.children].forEach(child => child.classList.remove('nearest'));
+                // Update the nearest store's distance in the list
                 const nearestElement = storeList.children[nearestStore.index];
+                nearestElement.innerHTML = formatStoreInfo(nearestStore, minDistance);
+
+                // Highlight the nearest store
+                [...storeList.children].forEach(child => child.classList.remove('nearest'));
                 nearestElement.classList.add('nearest');
 
                 // Move the nearest store to the top of the list
@@ -457,9 +458,6 @@ function findNearestStore() {
                 map.setZoom(14);
                 infoWindows.forEach(iw => iw.close());
                 infoWindow.open(map, marker);
-
-                // Update distances and reattach listeners
-                calculateAndDisplayDistances(userLocation);
             }
         });
     } else {
