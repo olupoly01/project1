@@ -239,6 +239,8 @@ function addStoreMarkers() {
         marker.addListener('click', () => {
             infoWindows.forEach(iw => iw.close()); // Close all other info windows
             infoWindow.open(map, marker);
+            map.setCenter(marker.getPosition());
+            map.setZoom(12);
         });
 
         // Add a store to the store list
@@ -364,26 +366,31 @@ addStoreMarkers();
 
 // Handle geolocation for initial distance calculation
 if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-        const userLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-        };
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+            };
 
-        // Add a marker for the user's location
-        new google.maps.Marker({
-            position: userLocation,
-            map: map,
-            title: "Your Location",
-            icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
-        });
+            // Add a marker for the user's location
+            new google.maps.Marker({
+                position: userLocation,
+                map: map,
+                title: "Your Location",
+                icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+            });
 
-        // Display distances between user's location and stores
-        calculateAndDisplayDistances(userLocation);
-    }, (error) => {
-        console.error("Geolocation error:", error.message);
-        alert("Unable to retrieve your location. Please enable location services.");
-    });
+            // Display distances between user's location and stores
+            calculateAndDisplayDistances(userLocation);
+        },
+        (error) => {
+            console.error("Geolocation error:", error.message);
+            alert("Unable to retrieve your location. Please enable location services.");
+            // Remove loading class if applicable
+            document.getElementById('find-nearest').classList.remove('loading'); 
+        }
+    );
 } else {
     alert("Geolocation is not supported by this browser.");
 }
@@ -414,52 +421,67 @@ function calculateAndDisplayDistances(userLocation) {
 
 // Function to find the nearest store
 function findNearestStore() {
+    // Add loading class to the button
+    document.getElementById('find-nearest').classList.add('loading'); 
+
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const userLocation = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-            };
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
 
-            let nearestStore = null;
-            let minDistance = Infinity;
+                let nearestStore = null;
+                let minDistance = Infinity;
 
-            stores.forEach((store, index) => {
-                const distance = google.maps.geometry.spherical.computeDistanceBetween(
-                    new google.maps.LatLng(userLocation.lat, userLocation.lng),
-                    new google.maps.LatLng(store.lat, store.lng)
-                ) / 1000; // Convert to kilometers
+                stores.forEach((store, index) => {
+                    const distance = google.maps.geometry.spherical.computeDistanceBetween(
+                        new google.maps.LatLng(userLocation.lat, userLocation.lng),
+                        new google.maps.LatLng(store.lat, store.lng)
+                    ) / 1000; // Convert to kilometers
 
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    nearestStore = { ...store, index };
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        nearestStore = { ...store, index };
+                    }
+                });
+
+                if (nearestStore) {
+                    // Update the nearest store's distance in the list
+                    const nearestElement = storeList.children[nearestStore.index];
+                    nearestElement.innerHTML = formatStoreInfo(nearestStore, minDistance);
+
+                    // Highlight the nearest store
+                    [...storeList.children].forEach(child => child.classList.remove('nearest'));
+                    nearestElement.classList.add('nearest');
+
+                    // Move the nearest store to the top of the list
+                    storeList.insertBefore(nearestElement, storeList.firstChild);
+
+                    // Scroll the store list to the top
+                    storeList.scrollTo({ top: 0, behavior: 'smooth' });
+
+                    // Center and zoom on the nearest store
+                    const marker = markers[nearestStore.index];
+                    const infoWindow = infoWindows[nearestStore.index];
+                    map.setCenter({ lat: nearestStore.lat, lng: nearestStore.lng });
+                    map.setZoom(14);
+                    infoWindows.forEach(iw => iw.close());
+                    infoWindow.open(map, marker);
                 }
-            });
 
-            if (nearestStore) {
-                // Update the nearest store's distance in the list
-                const nearestElement = storeList.children[nearestStore.index];
-                nearestElement.innerHTML = formatStoreInfo(nearestStore, minDistance);
+                // Remove loading class
+                document.getElementById('find-nearest').classList.remove('loading'); 
 
-                // Highlight the nearest store
-                [...storeList.children].forEach(child => child.classList.remove('nearest'));
-                nearestElement.classList.add('nearest');
-
-                // Move the nearest store to the top of the list
-                storeList.insertBefore(nearestElement, storeList.firstChild);
-
-                // Scroll the store list to the top
-                storeList.scrollTo({ top: 0, behavior: 'smooth' });
-
-                // Center and zoom on the nearest store
-                const marker = markers[nearestStore.index];
-                const infoWindow = infoWindows[nearestStore.index];
-                map.setCenter({ lat: nearestStore.lat, lng: nearestStore.lng });
-                map.setZoom(14);
-                infoWindows.forEach(iw => iw.close());
-                infoWindow.open(map, marker);
+            },
+            (error) => {
+                console.error("Geolocation error:", error.message);
+                alert("Unable to retrieve your location. Please enable location services.");
+                // Remove loading class
+                document.getElementById('find-nearest').classList.remove('loading'); 
             }
-        });
+        );
     } else {
         alert('Geolocation is not supported by your browser.');
     }

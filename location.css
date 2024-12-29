@@ -378,6 +378,17 @@ body {
 .find-nearest-btn:hover {
 	background-color:var(--btn-hover-color);
 }
+.find-nearest-btn.loading {
+	/* Loading state styles */
+	background-color: #ccc; /* Example: Gray out button */
+	cursor: progress; 
+	pointer-events: none; 
+    }
+    
+    .find-nearest-btn.loading::after {
+	content: "Loading..."; 
+	margin-left: 5px; 
+    }
 .button-wrapper{
 	margin-top: 10px;
 	display: flex;
