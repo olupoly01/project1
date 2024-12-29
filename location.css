@@ -198,7 +198,7 @@ body {
 	align-items: center;
 	position: absolute;
 	width: 80%;
-	top: 12%;
+	top: 13%;
 	z-index: 1400;
     }
     
@@ -293,7 +293,7 @@ body {
     @media (max-width: 768px) {
 	.search-container {
 	    width: 100%;
-	    top: 10%;
+	    top: 9%;
 	}
     
 	.search-bar {
@@ -326,7 +326,7 @@ body {
 	padding:20px;
 	margin-bottom:7px;
 	border: none;
-	border-bottom:1px solid #555555;
+	border-bottom:1px solid #888888;
 	background-color:var(--text-light);
 }
 .store h3 {
