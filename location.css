@@ -326,7 +326,7 @@ body {
 	padding:20px;
 	margin-bottom:7px;
 	border: none;
-	border-bottom:1px solid #888888;
+	border-bottom:0.5px solid #888888;
 	background-color:var(--text-light);
 }
 .store h3 {
@@ -387,15 +387,15 @@ body {
 .view-on-map {
 	color:var(--text-dark);
 	background-color: var(--text-light);
-	border: 1px solid #000000 ;
+	border: 1px solid #333333 ;
 	padding:5px 10px;
-	border-radius:5px;
+	border-radius: 15px;
 	cursor:pointer;
 	font-size:12px;
 	transition:background-color 0.3s;
 }
 .view-on-map a{
-	color: #000000;
+	color: var(--text-dark);
 }
 @media (min-width:768px) {
 	.main-container {

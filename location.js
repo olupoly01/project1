@@ -213,14 +213,13 @@ return `
 `;
 }
 
-//Add store marker for each store
 function addStoreMarkers() {
     stores.forEach((store, index) => {
         const marker = new google.maps.Marker({
             position: { lat: store.lat, lng: store.lng },
             map: map,
             title: store.name,
-            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
         });
         markers.push(marker);
 
@@ -229,49 +228,26 @@ function addStoreMarkers() {
             <h3 style="margin: 0; font-size: 14px; font-weight: bold;">${store.name}</h3>
             <p style="margin: 3px 0; color: #666; font-size: 10px; line-height: 14px;">${store.address}</p>
             <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
-            style="padding: 6px 10px; background-color: #117bb7; color: #fff; border: none; border-radius: 15px; cursor: pointer; font-size: 10px; margin-bottom: 3px;">
+            style="padding: 6px 10px; background-color: #1563e0; color: #fff; border: none; border-radius: 15px; cursor: pointer; font-size: 10px; margin-bottom: 3px;">
             Get Directions
             </button>
-            </div>`
+            </div>`,
         });
         infoWindows.push(infoWindow);
 
-// Add a marker click listener to show the info window
-marker.addListener('click', () => {
-infoWindows.forEach(iw => iw.close()); // Close other info windows
-infoWindow.setContent(`<div style="font-family: Montserrat, sans-serif; line-height: 0.81; width: 250px; height: 80px;">
-<h3 style="margin: 0; font-size: 14px; font-weight: bold;">${store.name}</h3>
-<p style="margin: 3px 0; color: #666; font-size: 10px; line-height: 14px;">${store.address}</p>
-<button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
-style="padding: 6px 10px; background-color: #117bb7; color: #fff; border: none; border-radius: 15px; cursor: pointer; font-size: 10px; margin-bottom: 3px;">
-Get Directions
-</button>
-</div>`);
-infoWindow.open(map, marker);
-});
+        // Marker click listener
+        marker.addListener('click', () => {
+            infoWindows.forEach(iw => iw.close()); // Close all other info windows
+            infoWindow.open(map, marker);
+        });
 
-// Function to handle "View on Map" clicks
-function viewOnMap(store, marker) {
-map.setZoom(15); // Adjust zoom level
-map.setCenter(marker.getPosition()); // Center map on marker
-infoWindows.forEach(iw => iw.close()); // Close other info windows
-const infoWindow = new google.maps.InfoWindow();
-infoWindow.setContent(`<div style="font-family: Montserrat, sans-serif; line-height: 0.81; width: 250px; height: 80px;">
-<h3 style="margin: 0; font-size: 14px; font-weight: bold;">${store.name}</h3>
-<p style="margin: 3px 0; color: #666; font-size: 10px; line-height: 14px;">${store.address}</p>
-<button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
-style="padding: 6px 10px; background-color: #117bb7; color: #fff; border: none; border-radius: 15px; cursor: pointer; font-size: 10px; margin-bottom: 3px;">
-Get Directions
-</button>
-</div>`);
-infoWindow.open(map, marker);
-}
-
+        // Add a store to the store list
         const storeDiv = document.createElement('div');
         storeDiv.className = 'store';
-        storeDiv.innerHTML = formatStoreInfo(store, 0);
+        storeDiv.innerHTML = formatStoreInfo(store, 0); // Initial distance is 0 (will be updated later)
         storeList.appendChild(storeDiv);
 
+        // Attach the "View on Map" click listener
         storeDiv.querySelector('.view-on-map').addEventListener('click', () => {
             map.setCenter(marker.getPosition());
             map.setZoom(14);
@@ -280,6 +256,7 @@ infoWindow.open(map, marker);
         });
     });
 }
+
 
 //search function
 const searchInput = document.getElementById('search-input');
@@ -324,7 +301,7 @@ searchInput.addEventListener('input', () => {
                         <h3 style="margin: 0; font-size: 14px; font-weight: bold;">${store.name}</h3>
                         <p style="margin: 3px 0; color: #666; font-size: 10px; line-height: 14px;">${store.address}</p>
                         <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(store.address)}&travelmode=driving', '_blank')" 
-                        style="padding: 6px 10px; background-color: #117bb7; color: #fff; border: none; border-radius: 15px; cursor: pointer; font-size: 10px; margin-bottom: 3px;">
+                        style="padding: 6px 10px; background-color: #1563e0; color: #fff; border: none; border-radius: 15px; cursor: pointer; font-size: 10px; margin-bottom: 3px;">
                         Get Directions
                         </button>
                         </div>`
@@ -427,28 +404,96 @@ document.getElementById('find-nearest').addEventListener('click', findNearestSto
 addStoreMarkers();
 
 if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const userLocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                };
-                map.setCenter(userLocation);
-                map.setZoom(15);
-    
-                // Add a marker for user's location
-                new google.maps.Marker({
-                    position: userLocation,
-                    map: map,
-                    title: "Your Location",
-                });
-            },
-            (error) => {
-                console.error("Geolocation error:", error.message);
-                alert("Unable to retrieve your location. Please enable location services.");
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+            };
+
+            // Center the map on the user's location
+            map.setCenter(userLocation);
+            map.setZoom(15);
+
+            // Add a marker for the user's location
+            new google.maps.Marker({
+                position: userLocation,
+                map: map,
+                title: "Your Location",
+            });
+
+            // Calculate and display distances as soon as the user's location is retrieved
+            calculateAndDisplayDistances(userLocation);
+        },
+        (error) => {
+            console.error("Geolocation error:", error.message);
+            alert("Unable to retrieve your location. Please enable location services.");
+        }
+    );
+} else {
+    alert("Geolocation is not supported by this browser.");
+}
+
+// Event listener for finding the nearest store
+document.getElementById('find-nearest').addEventListener('click', findNearestStore);
+
+// Function to find the nearest store
+function findNearestStore() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+            };
+
+            let nearestStore = null;
+            let minDistance = Infinity;
+
+            stores.forEach((store, index) => {
+                const distance = google.maps.geometry.spherical.computeDistanceBetween(
+                    new google.maps.LatLng(userLocation.lat, userLocation.lng),
+                    new google.maps.LatLng(store.lat, store.lng)
+                ) / 1000;
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearestStore = { ...store, index };
+                }
+            });
+
+            if (nearestStore) {
+                alert(`Nearest store: ${nearestStore.name}`);
+                map.setCenter({ lat: nearestStore.lat, lng: nearestStore.lng });
+                map.setZoom(14);
+
+                [...storeList.children].forEach(child => child.classList.remove('nearest'));
+                const nearestElement = storeList.children[nearestStore.index];
+                nearestElement.classList.add('nearest');
+                storeList.insertBefore(nearestElement, storeList.firstChild);
             }
-        );
+        });
     } else {
-        alert("Geolocation is not supported by this browser.");
+        alert('Geolocation is not supported by your browser.');
     }
-    
+}
+function calculateAndDisplayDistances(userLocation) {
+    stores.forEach((store, index) => {
+        const distance = google.maps.geometry.spherical.computeDistanceBetween(
+            new google.maps.LatLng(userLocation.lat, userLocation.lng),
+            new google.maps.LatLng(store.lat, store.lng)
+        ) / 1000; // Convert to kilometers
+
+        const storeDiv = storeList.children[index];
+        storeDiv.innerHTML = formatStoreInfo(store, distance); // Update store info with distance
+
+        // Reattach the "View on Map" click listener
+        storeDiv.querySelector('.view-on-map').addEventListener('click', () => {
+            const marker = markers[index];
+            const infoWindow = infoWindows[index];
+            map.setCenter(marker.getPosition());
+            map.setZoom(14);
+            infoWindows.forEach(iw => iw.close());
+            infoWindow.open(map, marker);
+        });
+    });
+}
