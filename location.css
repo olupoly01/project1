@@ -207,8 +207,8 @@ body {
 	align-items: center;
 	background: var(--text-light);
 	border: 1px solid var(--secondary-color);
-	border-radius: 10px;
-	padding: 10px;
+	border-radius: 30px;
+	padding: 7px;
 	width: 85%;
 	max-width: 400px;
 	position: relative;
