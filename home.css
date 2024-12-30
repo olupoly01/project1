@@ -687,7 +687,7 @@ to {
       .bokku-expansion h3 {
 	font-size: 22px;
 	margin-bottom: 15px;
-	color: #ffe8e8; /* Subtle contrast */
+	color: var(--text-light); 
 	display: flex;
 	align-items: center;
 	gap: 8px; /* Space between icon and heading */
