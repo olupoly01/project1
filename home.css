@@ -736,7 +736,7 @@ to {
       
       .bokku-details ul li i {
 	font-size: 22px; /* Adjust icon size */
-	color: #ffe8e8; /* Match heading color */
+	color: var(--text-light);
       }
       
       /* Call-to-action button */
