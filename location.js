@@ -325,6 +325,9 @@ searchInput.addEventListener('input', () => {
                         matchingElement.classList.add('searched-store'); // Add a class for highlighting
                         storeList.insertBefore(matchingElement, storeList.firstChild);
                     }
+                    
+                    // Scroll the store list to the top
+                    storeList.scrollTo({ top: 0, behavior: 'smooth' });
                 });
                 
                 searchResults.appendChild(resultItem);
@@ -448,16 +451,21 @@ function findNearestStore() {
                 });
 
                 if (nearestStore) {
+                    // Find the existing element (if any)
+                    const existingElement = storeList.children[nearestStore.index];
+
                     // Update the nearest store's distance in the list
-                    const nearestElement = storeList.children[nearestStore.index];
-                    nearestElement.innerHTML = formatStoreInfo(nearestStore, minDistance);
+                    existingElement.innerHTML = formatStoreInfo(nearestStore, minDistance); 
 
                     // Highlight the nearest store
                     [...storeList.children].forEach(child => child.classList.remove('nearest'));
-                    nearestElement.classList.add('nearest');
+                    existingElement.classList.add('nearest');
 
-                    // Move the nearest store to the top of the list
-                    storeList.insertBefore(nearestElement, storeList.firstChild);
+                    // Move the existing element to the top (if not already at the top)
+                    if (storeList.firstChild !== existingElement) {
+                        storeList.removeChild(existingElement); 
+                        storeList.insertBefore(existingElement, storeList.firstChild); 
+                    }
 
                     // Scroll the store list to the top
                     storeList.scrollTo({ top: 0, behavior: 'smooth' });
