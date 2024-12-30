@@ -293,7 +293,7 @@ body {
     @media (max-width: 768px) {
 	.search-container {
 	    width: 100%;
-	    top: 9%;
+	    top: 10%;
 	}
     
 	.search-bar {
