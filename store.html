@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store Information</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"><a href="index.html"> bokku! </a></div>
+    <div class="hamburger"> <i class="fas fa-bars"> </i></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+       <li>  <a href="about.html"> About</a> </li>
+       <li ><a href="products.html" >Products</a></li>
+       <li><a href="contact.html">Contact</a></li>
+       <li><a href="location.html">Find us</a></li>
+    </ul>
+ </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <img src="images/bokku!-yellow-bg.jpg" alt="Bokku!" class="hero-logo">
+      <h1>Provide Your Store Information</h1>
+      <p>We’re expanding Bokku! and need your help to find the perfect locations.</p>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="form-section">
+    <div class="form-container">
+      <h2>Store Information</h2>
+      <p>Complete the form below to submit your store location details.</p>
+      <form action="/submit" method="POST" enctype="multipart/form-data">
+            <!-- Full Name -->
+            <div class="form-group">
+              <label><i class="fas fa-user"></i> Full Name<span>*</span></label>
+              <div class="split-input">
+                  <input type="text" name="first_name" placeholder="First Name" required>
+                  <input type="text" name="last_name" placeholder="Last Name" required>
+              </div>
+          </div>
+          <!-- Email -->
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email<span>*</span></label>
+            <input type="email" name="email" placeholder="example@mail.com" required>
+        </div>
+          <!-- Phone -->
+          <div class="form-group">
+            <label><i class="fas fa-phone"></i> Phone<span>*</span></label>
+            <input type="tel" name="phone" placeholder="(000) 000-0000" required>
+        </div>
+          <!-- Address -->
+          <div class="form-group">
+              <label><i class="fas fa-map-marker-alt"></i>Property address<span>*</span></label>
+              <input type="text" name="street" placeholder="Street Address" required>
+              <div class="split-input">
+                  <input type="text" name="city" placeholder="City" required>
+                  <input type="text" name="state" placeholder="State / Province" required>
+              </div>
+          </div>
+          <!--property image-->
+        <div class="form-group">
+          <label for="property-picture">Attach a Picture of the Property:</label>
+          <input type="file" id="property-picture" name="property-picture" accept="image/*">
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Need help? Visit your nearest <strong>Bokku!</strong> store or contact us.</p>
+  </footer>
+  <script src="store.js"></script>
+</body>
+</html>
