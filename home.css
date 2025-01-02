@@ -429,16 +429,16 @@ to {
 	color:var(--text-light);
 }
 .about-section .btn {
-	display:inline-block;
-	padding:0.8rem 2.5rem;
-	background:var(--accent-color);
-	color:var(--primary-color);
-	font-size:1rem;
-	font-weight:bold;
-	border-radius:5px;
-	text-transform:uppercase;
-	transition:background 0.3s ease,transform 0.3s ease;
-	box-shadow:0px 4px 6px rgba(0,0,0,0.15);
+	display: inline-block;
+	padding: 0.8rem 2.5rem;
+	background: var(--accent-color);
+	color: var(--primary-color);
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 50px;
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .about-section .btn:hover {
 	background:var(--primary-color);
@@ -500,17 +500,16 @@ to {
 	margin-bottom:1.5rem;
 }
 .locations-content .btn.discover-more {
-	display:inline-block;
-	padding:0.8rem 2rem;
-	font-size:1rem;
-	text-transform:uppercase;
-	background:var(--accent-color);
-	color:var(--primary-color);
-	border-radius:5px;
-	font-weight:bold;
-	transition:background 0.3s ease,transform 0.3s ease;
-	text-decoration:none;
-	box-shadow:0px 4px 6px rgba(0,0,0,0.2);
+	display: inline-block;
+	padding: 0.8rem 2.5rem;
+	background: var(--accent-color);
+	color: var(--primary-color);
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 50px;
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .locations-content .btn.discover-more:hover {
 	background:var(--primary-color);
@@ -687,7 +686,7 @@ to {
       .bokku-expansion h3 {
 	font-size: 22px;
 	margin-bottom: 15px;
-	color: var(--text-light); 
+	color: var(--accent-color); 
 	display: flex;
 	align-items: center;
 	gap: 8px; /* Space between icon and heading */
@@ -738,24 +737,22 @@ to {
 	font-size: 22px; /* Adjust icon size */
 	color: var(--text-light);
       }
-      
       /* Call-to-action button */
       .bokku-expansion .btn {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #fff;
-	color: #756bff;
-	padding: 15px 30px;
-	font-size: 20px;
+	background: var(--accent-color);
+	color: var(--primary-color);
+	padding: 0.8rem 2.5rem;
+	font-size: 1rem;
 	font-weight: bold;
-	border-radius: 8px;
+	border-radius: 50px;
 	text-transform: uppercase;
 	text-decoration: none;
 	gap: 10px; /* Space between icon and text */
 	transition: transform 0.3s ease, background-color 0.3s ease;
       }
-      
       .bokku-expansion .btn:hover {
 	background-color: #e8eaff;
 	transform: scale(1.05); /* Slight zoom effect */
