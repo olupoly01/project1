@@ -213,6 +213,15 @@ body {
 	transform: translateY(-5px);
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
       }
+
+      .accent-btn:hover{
+	background-color: #e8eaff;
+      }
+
+      .primary-btn:hover{
+	background-color: #e8eaff;
+	color: var(--text-dark);
+      }
       
       /* Background Styling */
       .welcome .background {
@@ -441,8 +450,7 @@ to {
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .about-section .btn:hover {
-	background:var(--primary-color);
-	color:var(--accent-color);
+	background-color: #e8eaff;
 	transform:translateY(-3px);
 	box-shadow:0px 6px 12px rgba(0,0,0,0.3);
 }
@@ -512,8 +520,7 @@ to {
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .locations-content .btn.discover-more:hover {
-	background:var(--primary-color);
-	color:var(--accent-color);
+	background-color: #e8eaff;
 	transform:translateY(-3px);
 	box-shadow:0px 6px 12px rgba(0,0,0,0.3);
 }
@@ -612,8 +619,7 @@ to {
       }
       
       .btn.small-btn:hover {
-	background: var(--primary-color);
-	color: var(--accent-color);
+	background-color: #e8eaff;
 	transform: translateY(-3px);
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
       }
