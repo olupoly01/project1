@@ -664,9 +664,9 @@ to {
       }
       /* Main section styling */
 .bokku-expansion {
+	background-color: var(--primary-color);
 	color: var(--text-light); /* White text */
 	padding: 40px;
-	margin: 30px 0;
 	text-align: center; /* Center the content */
       }
       
