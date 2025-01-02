@@ -215,7 +215,11 @@
       }
       
       .key-point {
-	background-color: var(--keypoints-bg);
+	background: linear-gradient(
+	  135deg,
+	  var(--primary-color),
+	  var(--background-dark)
+	);
 	color: var(--text-light);
 	padding: 40px 20px;
 	width: 300px;

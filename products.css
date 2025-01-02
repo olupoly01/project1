@@ -400,7 +400,7 @@ h1 {
       }
       
       .social-icons a:hover {
-	transform: scale(1.2);
+	transform: scale(1.1);
 	color: var(--primary-color);
       }
       
