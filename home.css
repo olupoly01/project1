@@ -134,76 +134,89 @@ body {
 }
 }/* Welcome Section */
 #welcome {
-	position:relative;
-	height:100vh;
-	display:flex;
-	align-items:center;
-	justify-content:center;
-	text-align:center;
-	color:var(--text-light);
-	overflow:hidden;
-	padding:2rem 1rem;
-}
-#welcome .content {
-	z-index:2;
-	max-width:800px;
-	animation:fadeIn 1.5s ease-in-out;
-}
-#welcome h1 {
-	font-size:4rem;
-	font-weight:700;
-	text-transform:uppercase;
-	line-height:1.2;
-	margin-top:70px;
-}
-#welcome h1 span {
-	color:var(--accent-color);
-}
-#welcome h2 {
-	font-size:2.5rem;
-	margin-bottom:1rem;
-}
-#welcome p {
-	margin:0 auto 2rem;
-	font-size:1.2rem;
-	line-height:1.6;
-	max-width:700px;
-	color:var(--text-light);
-}
-#welcome p span {
-	color:var(--accent-color);
-}
-.cta-buttons a {
-	display:inline-block;
-	margin:0.5rem;
-	padding:1rem 2rem;
-	font-size:1.1rem;
-	text-transform:uppercase;
-	border-radius:30px;
-	text-decoration:none;
-	transition:all 0.3s ease;
-}
-.primary-btn {
-	background:var(--primary-color);
-	color:var(--text-light);
-	box-shadow:0 8px 15px rgba(0,0,0,0.3);
-}
-.accent-btn {
-	background:var(--accent-color);
-	color:var(--text-dark);
-}
-.cta-buttons a:hover {
-	transform:translateY(-5px);
-	box-shadow:0 10px 20px rgba(0,0,0,0.4);
-}
-.accent-btn:hover {
-	background-color:#e8eaff;
-}
-.primary-btn:hover {
-	background-color:#e8eaff;
-	color:var(--text-dark);
-}
-/* Background Styling */
+	position: relative;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	color: var(--text-light);
+	overflow: hidden;
+	padding: 2rem 1rem;
+      }
+      
+      #welcome .content {
+	z-index: 2;
+	max-width: 800px;
+	animation: fadeIn 1.5s ease-in-out;
+      }
+      
+      #welcome h1 {
+	font-size: 4rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	line-height: 1.2;
+	margin-top: 70px;
+      }
+      
+      #welcome h1 span {
+	color: var(--accent-color);
+      }
+
+      #welcome h2{
+	font-size:  2.5rem;
+	margin-bottom: 1rem;
+      }
+      
+      #welcome p {
+	margin: 0 auto 2rem;
+	font-size: 1.2rem;
+	line-height: 1.6;
+	max-width: 700px;
+	color: var(--text-light);
+      }
+
+      #welcome p span{
+	color: var(--accent-color);
+      }
+      
+      .cta-buttons a {
+	display: inline-block;
+	margin: 0.5rem;
+	padding: 1rem 2rem;
+	font-size: 1.1rem;
+	text-transform: uppercase;
+	border-radius: 30px;
+	text-decoration: none;
+	transition: all 0.3s ease;
+      }
+      
+      .primary-btn {
+	background: var(--primary-color);
+	color: var(--text-light);
+	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      }
+      
+      .accent-btn {
+	background: var(--accent-color);
+	color: var(--text-dark);
+      }
+      
+      .cta-buttons a:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .accent-btn:hover{
+	background-color: #e8eaff;
+      }
+
+      .primary-btn:hover{
+	background-color: #e8eaff;
+	color: var(--text-dark);
+      }
+      
+      /* Background Styling */
       .welcome .background {
 	position:absolute;
 	top:0;
@@ -902,10 +915,12 @@ to {
 /* Responsive Design */
       @media (max-width:768px) {
 	.footer-container {
-	grid-template-columns:1fr;
-	text-align:center;
-}
-.social-icons a {
-	margin:0 0.5rem;
-}
-}
+	  grid-template-columns: 1fr;
+	  text-align: center;
+	}
+      
+	.social-icons a {
+	  margin: 0 0.5rem;
+	}
+      }
+      
