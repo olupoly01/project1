@@ -326,3 +326,22 @@ document.addEventListener("DOMContentLoaded", () => {
   initSlider();
 });
 
+// Select all elements with the 'animate' class
+const animatedElements = document.querySelectorAll('.animate');
+
+// Create an Intersection Observer
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Add the 'active' class when in view
+            entry.target.classList.add('active');
+            // Optionally unobserve the element to prevent repeated triggers
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1 // Trigger when 10% of the element is visible
+});
+
+// Observe each animated element
+animatedElements.forEach(el => observer.observe(el));
