@@ -311,17 +311,13 @@ body {
 }
 }@media (max-width:420px) {
 	#welcome h1 {
-	font-size:2.5rem;
+	font-size: 3rem;
 }
 #welcome h2 {
 	font-size:1.5rem;
 }
 #welcome p {
-	font-size:1rem;
-}
-.cta-buttons a {
-	font-size:.8rem;
-	padding:.8rem 1.2rem;
+	font-size:1.1rem;
 }
 }/* Hero Slider Base */
 	.hero-slider {
