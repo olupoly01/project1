@@ -212,7 +212,6 @@ body {
       #welcome .content {
 	z-index: 2;
 	max-width: 800px;
-	animation: fadeIn 1.5s ease-in-out;
       }
       
       #welcome h1 {
