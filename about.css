@@ -128,7 +128,19 @@ body {
 .nav-links a:hover {
 	color:var(--accent-color);
 }
-}/* Hero Banner */
+}
+/* Base animation class */
+.animate {
+	opacity: 0;
+	transform: translateY(50px); /* Or any initial state */
+	transition: all 0.5s ease-in-out;
+    }
+    
+    /* Triggered animation */
+    .animate.active {
+	opacity: 1;
+	transform: translateY(0);
+    }   /* Hero Banner */
       .about-banner {
 	position:relative;
 	height:100vh;
