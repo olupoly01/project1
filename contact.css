@@ -136,6 +136,7 @@ body {
 	color:var(--text-light);
 	text-align:center;
 	padding:4rem 1rem;
+	width: 100%;
 }
 .hero-logo {
 	max-width:120px;
