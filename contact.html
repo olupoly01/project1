@@ -1,71 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="contact.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Bokku!</title>
+  <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo"><a href="index.html">bokku!</a></div>
-        <div class="hamburger"> <i class="fas fa-bars"></i></div>
-        <ul class="nav-links">
-           <li><a href="about.html">About</a></li>
-           <li><a href="products.html">Products</a></li>
-           <li><a href="location.html">Find Us</a></li>
-        </ul>
-    </nav>
+  <nav class="navbar">
+    <div class="logo"><a href="index.html"> bokku! </a></div>
+    <div class="hamburger"> <i class="fas fa-bars"> </i></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="application-form.html" >Team Up</a></li>
+      <li><a href="location.html">Find us</a></li>
+    </ul>
+  </nav>
 
-    <!-- Main Container -->
-    <div class="container">
-        <div class="main-box">
-            <!-- Social Media Section -->
-            <div class="social-section">
-                <div class="social-icons">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+        <img src="images/bokku!-yellow-bg.jpg" alt="Bokku!" class="hero-logo">
+      <h1>Contact Bokku!</h1>
+      <p>We'd love to hear from you. Fill out the form below, and we'll get back to you shortly.</p>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="form-section">
+    <div class="form-container">
+      <h2>Contact Us</h2>
+      <form action="/submit" method="POST">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Full Name<span>*</span></label>
+          <div class="split-input">
+            <input type="text" name="first_name" placeholder="First Name" required>
+            <input type="text" name="last_name" placeholder="Last Name" required>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label><i class="fas fa-envelope"></i> Email<span>*</span></label>
+          <input type="email" name="email" placeholder="example@mail.com" required>
+        </div>
+
+        <!-- Message -->
+        <div class="form-group">
+          <label><i class="fas fa-comment-dots"></i> Your Message<span>*</span></label>
+          <textarea name="message" rows="5" placeholder="Write your message here" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Brand Info -->
+            <div class="footer-brand">
+                <img src="/images/bokku!-blue-bg.jpg" alt="bokku! Logo">
+                <p>&copy; Atreos Retail Platform 2022. All Rights Reserved.</p>
+                <p>Made with <i class="fas fa-heart fa-beat"></i> by <a href="https://nicopixel-portfolio.vercel.app" target="_blank">nicopixel</a>.</p>
             </div>
 
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <h1>Contact <span>bokku!</span></h1>
-                <p>We'd love to hear from you. Fill out the form below, and we'll get back to you shortly.</p>
-                <form>
-                    <label for="first_name"><i class="fas fa-user"></i> Full Name<span>*</span></label>
-                    <div class="split-input">
-                        <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
-                        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email"><i class="fas fa-envelope"></i> Email<span>*</span></label>
-                        <input type="email" id="email" name="email" placeholder="example@mail.com" required>
-                    </div>
-                    <label for="message"><i class="fas fa-pencil-alt"></i> Your Message<span>*</span></label>
-                    <textarea id="message" name="message" placeholder="Write your message here" rows="4" required></textarea>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-
-            <!-- Info Box -->
-            <div class="info-box">
-                <h2>Contact Info</h2>
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
                 <ul>
-                    <li><i class="fas fa-envelope"></i> info@bokku.com</li>
-                    <li><i class="fas fa-phone"></i> +234 564 8956 146</li>
-                    <li><i class="fas fa-map-marker-alt"></i> 14 Greenroad St.</li>
-                    <li><i class="fas fa-clock"></i> Mon-Sun: 09:00 - 21:00</li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="application-form.html">Work with Us</a></li>
+                    <li><a href="location.html">Store Locator</a></li>
                 </ul>
             </div>
-        </div>
-    </div>
 
-    <script src="contact.js"></script>
+            <!-- Terms & Policies -->
+            <div class="footer-section">
+                <h3>Terms & Policies</h3>
+                <ul>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Data Privacy Statement</a></li>
+                    <li><a href="#">Website Usage Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="footer-section contact-section">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@atreos.com">info@atreos.com</a></p>
+                <p>Follow us:</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/company/shopbokku/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/bokkumart/" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/bokkumart/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@bokkumart" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <script src="contact.js"></script>
 </body>
 </html>
